@@ -20,6 +20,18 @@ public class RepairQuad extends Karel
 	}
 
 	public void repairColumn(){
+		ascendFix();
+		// goes up fixing the column
+		turnAround();
+		descend();
+	}
+
+	public void turnAround(){
+		turnLeft();
+		turnLeft();
+	}
+
+	public void descend(){
 		
 	}
 
