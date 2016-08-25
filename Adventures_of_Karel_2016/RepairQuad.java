@@ -11,6 +11,7 @@ public class RepairQuad extends Karel
 			repairColumn();
 			moveNext();
 		}
+		repairColumn();
 	}
 
 	public void moveNext(){
@@ -40,6 +41,7 @@ public class RepairQuad extends Karel
 
 	public void ascendFix(){
 		turnLeft();
+		replaceBeeper();
 		while (frontIsClear()){
 			move();
 			replaceBeeper();
