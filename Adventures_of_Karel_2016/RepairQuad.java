@@ -7,7 +7,7 @@ public class RepairQuad extends Karel
 
 	public void run()
 	{
-		while (frontisClear()){
+		while (frontIsClear()){
 			repairColumn();
 			moveNext();
 		}
@@ -32,7 +32,24 @@ public class RepairQuad extends Karel
 	}
 
 	public void descend(){
-		
+		while (frontIsClear()){
+			move();
+		}
+		turnLeft();
+	}
+
+	public void ascendFix(){
+		turnLeft();
+		while (frontIsClear()){
+			move();
+			replaceBeeper();
+		}
+	}
+
+	public void replaceBeeper(){
+		if (!beepersPresent()){
+			putBeeper();
+		}
 	}
 
 	/* IGNORE THE CODE BELOW.  (Don't delete it, but we
