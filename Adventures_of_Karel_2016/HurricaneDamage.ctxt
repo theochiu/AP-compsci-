@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.params=
+comment0.target=void\ turnRight()
+comment1.params=
+comment1.target=void\ upRight()
+comment2.params=
+comment2.target=void\ downLeft()
+comment3.params=
+comment3.target=void\ backwards()
+comment4.params=
+comment4.target=void\ lookingforrubble()
+comment5.params=
+comment5.target=void\ buildhouse()
+comment5.text=\r\n\ \ \ \ \ \ \ \ if\ (beepersPresent()\=\=true){\r\n\ \ \ \ \ \ \ \ \ \ \ \ buildhouse();\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ \r\n\ \ \ \ \ \ \ \ if\ (var\=\=0){\r\n\ \ \ \ \ \ \ \ \ \ \ \ move();\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ if\ (var\=\=1){\r\n\ \ \ \ \ \ \ \ \ \ \ \ buildhouse();\r\n\ \ \ \ \ \ \ \ }\r\n
+comment6.params=
+comment6.target=void\ run()
+comment7.params=
+comment7.target=void\ launchKarelEnvironment()
+comment7.text=IGNORE\ THE\ CODE\ BELOW.\ \ (Don't\ delete\ it,\ but\ we\r\n\ had\ to\ include\ it\ to\ get\ Karel\ to\ play\ nicely\ with\r\n\ BlueJ.\ \ You\ don't\ need\ to\ understand\ what\ it\ means\r\nat\ all.
+comment8.params=
+comment8.target=java.lang.String\ className()
+numComments=9
