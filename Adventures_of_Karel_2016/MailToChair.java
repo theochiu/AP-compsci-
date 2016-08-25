@@ -1,3 +1,4 @@
+// Copyright Theodore Chiu 2016
 
 import stanford.karel.*;
 
