@@ -6,7 +6,7 @@ public class SpringTime extends Karel
 {
 
 	public void run(){
-		for (int i=0; i<5;i++){
+		for (int i=0; i<5;i++){ 
 			while (frontIsClear()){
 				move();
 			}
@@ -18,8 +18,7 @@ public class SpringTime extends Karel
 			while (frontIsClear()){
 				move();
 			}
-			turnLeft();
-			
+			turnLeft();	
 		}
 	}
 
