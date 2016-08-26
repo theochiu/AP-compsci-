@@ -1,3 +1,4 @@
+// Copyright 2016, Theodore Chiu, All rights reserved. *
 
 import stanford.karel.*;
 
@@ -6,8 +7,35 @@ public class MountainClimber extends Karel
 
     public void run()
     {
-
+        while (frontIsClear()){
+            move(); // finds mountain
+        }
+        climb();
+        putBeeper();
+        move();
+        while (rightIsClear()){ // descends mountain
+            turnRight();
+            move();
+            turnLeft();
+            move();
+        }
     }
+
+    public void climb(){
+        while (!frontIsClear()){
+            turnLeft();
+            move();
+            turnRight();
+            move();
+        }
+    }
+
+    public void turnRight(){
+        for (int i=0;i<3;i++){
+            turnLeft();
+        }
+    }
+
 
     /* IGNORE THE CODE BELOW.  (Don't delete it, but we
      * had to include it to get Karel to play nicely with
