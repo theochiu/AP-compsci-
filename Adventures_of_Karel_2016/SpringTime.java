@@ -1,13 +1,11 @@
-// Copywrite Theodore Chiu 2016. All rights resered 
-
+// Copyright 2016, Theodore Chiu, All rights reserved.
 
 import stanford.karel.*;
 
 public class SpringTime extends Karel
 {
 
-	public void run()
-	{
+	public void run(){
 		for (int i=0; i<5;i++){
 			while (frontIsClear()){
 				move();
