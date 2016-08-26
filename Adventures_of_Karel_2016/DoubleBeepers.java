@@ -6,7 +6,15 @@ public class DoubleBeepers extends Karel
 
     public void run()
     {
+        move();
+        doublePile();
+        moveBackwards();
+    }
 
+    public void moveBackwards(){
+        turnLeft(); turnLeft();
+        move();
+        turnLeft();turnLeft();
     }
 
     /* IGNORE THE CODE BELOW.  (Don't delete it, but we
