@@ -1,19 +1,52 @@
 
 import stanford.karel.*;
 
-public class CleanStairs extends Karel
+public class HurricaneDamage2 extends Karel
 {
 
 	public void run()
-	{	// finds stairs
+	{
 		while (frontIsClear()){
+			while(!beepersPresent()){
+				move();
+			}
+			pickBeeper();
+			buildHouse();
+		}
+	}
+
+	public void buildHouse(){
+		taround();
+		move();
+		turnRight();
+		for (int i=0;i<3;i++){
+			putBeeper();
 			move();
 		}
-
+		turnRight();
+		move();
+		turnLeft();
+		move();
+		taround();
+		for (int i=0;i<3;i++){
+			putBeeper();
+			move();
+		}
+		turnLeft(); move(); turnLeft(); taround();
+		for (int i=0;i<3;i++){
+			putBeeper();
+			move();
+		}
 	}
 
 	public void turnRight(){
-		for(int i=0;i<3;i++){
+		for (int i=0;i<3;i++){
+			turnLeft();
+		}
+	}
+
+	public void taround(){
+		for (int i=0;i<2;i++){
 			turnLeft();
 		}
 	}
