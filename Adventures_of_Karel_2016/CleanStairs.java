@@ -1,3 +1,5 @@
+// Copyright 2016, Theodore Chiu, All rights reserved. 
+
 
 import stanford.karel.*;
 
@@ -9,7 +11,13 @@ public class CleanStairs extends Karel
 		while (frontIsClear()){
 			move();
 		}
-
+		while (!frontIsClear()){
+			turnLeft();
+			move();
+			turnRight();
+			move();
+			pickBeeper();
+		}
 	}
 
 	public void turnRight(){
