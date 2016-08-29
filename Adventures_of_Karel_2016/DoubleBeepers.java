@@ -17,6 +17,35 @@ public class DoubleBeepers extends Karel
         turnLeft();turnLeft();
     }
 
+    public void doublePile(){
+        createDoublePile();
+        movePileBack();
+    }
+
+    public void createDoublePile(){
+        while (beepersPresent()){
+            puttwo();
+        }
+    }
+
+    public void puttwo(){
+        move();
+        putBeeper();
+        putBeeper();
+        moveBackwards();
+    }
+
+    public void movePileBack(){
+        move();
+        while (beepersPresent()){
+            pickBeeper();
+            moveBackwards();
+            putBeeper();
+            move();
+        }
+        moveBackwards();
+    }
+
     /* IGNORE THE CODE BELOW.  (Don't delete it, but we
      * had to include it to get Karel to play nicely with
      * BlueJ.  You don't need to understand what it means
