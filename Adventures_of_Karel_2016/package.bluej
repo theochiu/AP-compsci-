@@ -1,8 +1,8 @@
 #BlueJ package file
 package.editor.height=543
 package.editor.width=568
-package.editor.x=190
-package.editor.y=116
+package.editor.x=107
+package.editor.y=4
 package.numDependencies=0
 package.numTargets=16
 package.showExtends=true
@@ -13,8 +13,8 @@ readme.editor.x=0
 readme.editor.y=0
 target1.editor.height=700
 target1.editor.width=900
-target1.editor.x=121
-target1.editor.y=64
+target1.editor.x=97
+target1.editor.y=13
 target1.height=50
 target1.name=CleanStairs
 target1.naviview.expanded=false
