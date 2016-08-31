@@ -7,7 +7,8 @@ public class HelloWorld extends ConsoleProgram
     public void run()
     {
         println("Hello world");
-        println("Today was a late start Wednesday!");
+        print("Today was a late start Wednesday!");
+        println("What's for lunch today");
     }
 
 
