@@ -1,0 +1,23 @@
+What can I do in a ConsoleProgram?
+	1. println
+	2. print
+	3. readInt
+	4. readLine
+
+What are the possible types?
+	1. int
+	2. double
+	3. boolean
+	4. any possible Class
+
+What is a class?
+	"super duper" type that has methods associated with it 
+
+int, double, boolean are primitive types	
+
+object -> variable whose type is a class
+
+Where do classes come from?
+	1. built into Java : String 
+	2. written by someone else : GRect Car
+	3. you 
