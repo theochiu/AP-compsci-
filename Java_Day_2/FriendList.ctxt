@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.params=myName
+comment0.target=FriendList(java.lang.String)
+comment1.params=
+comment1.target=int\ getNumFriends()
+comment2.params=who
+comment2.target=void\ addFriend(java.lang.String)
+comment3.params=who
+comment3.target=void\ unFriend(java.lang.String)
+comment4.params=
+comment4.target=java.lang.String\ getFriendSummary()
+numComments=5
