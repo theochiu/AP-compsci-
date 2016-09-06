@@ -1,11 +1,13 @@
 #BlueJ class context
 comment0.params=
-comment0.target=void\ run()
+comment0.target=void\ layoutRows()
 comment1.params=
-comment1.target=void\ bounceAround()
+comment1.target=void\ run()
 comment2.params=
-comment2.target=void\ launchKarelEnvironment()
-comment2.text=IGNORE\ THE\ CODE\ BELOW.\ \ (Don't\ delete\ it,\ but\ we\r\n\ had\ to\ include\ it\ to\ get\ Karel\ to\ play\ nicely\ with\r\n\ BlueJ.\ \ You\ don't\ need\ to\ understand\ what\ it\ means\r\nat\ all.
+comment2.target=void\ bounceAround()
 comment3.params=
-comment3.target=java.lang.String\ className()
-numComments=4
+comment3.target=void\ launchKarelEnvironment()
+comment3.text=IGNORE\ THE\ CODE\ BELOW.\ \ (Don't\ delete\ it,\ but\ we\r\n\ had\ to\ include\ it\ to\ get\ Karel\ to\ play\ nicely\ with\r\n\ BlueJ.\ \ You\ don't\ need\ to\ understand\ what\ it\ means\r\nat\ all.
+comment4.params=
+comment4.target=java.lang.String\ className()
+numComments=5
