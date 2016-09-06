@@ -25,9 +25,4 @@ public class BarGraph extends GraphicsProgram
 			add(bar);
 		}
 	}
-
-	public int convert_y(int y){
-		return y-256;
-	}
-
 }
