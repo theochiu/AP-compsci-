@@ -17,6 +17,7 @@ public class Bullseye extends GraphicsProgram
 			int ringNumber = NUMRINGS - i;
 			GOval ring = new GOval(INITIALX -(i-1)*RINGWIDTH , INITIALY-(i-1)*RINGWIDTH, (i+1)*2*RINGWIDTH , (i+1)*2*RINGWIDTH);
 			ring.setFilled(true);
+			
 			if (i%2==1){
 				ring.setColor(Color.red);
 			}
@@ -25,10 +26,7 @@ public class Bullseye extends GraphicsProgram
 			}
 			add(ring);
 			ring.sendToBack();
-
 		}
-
 	}
-
 }
 
