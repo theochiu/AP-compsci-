@@ -32,7 +32,21 @@ public class ThermoScroller extends GraphicsProgram
 	}
 
 	public void mouseMoved(MouseEvent event){
-		
+		GObject obj = getElementAt(event.getX() , event.getY());
+		if (obj == blueBox){
+			therm.colder();
+		} else{
+			if (obj == redBox){
+				therm.warmer();
+			}else{
+				if (obj == tempLabel){
+					tempLabel.setColor(Color.cyan);
+				}else{
+					tempLabel.setColor(Color.black);
+				}
+			}
+		}
+		tempLabel.setLabel("Temperature  = " + therm.getValue());
 	}
 
 
