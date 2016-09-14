@@ -10,7 +10,7 @@ public class Breakout extends GraphicsProgram
 {
 
 // add in sounds!
-	AudioClip bounceClip = MediaTools.load.AudioClip("bounce.au");
+	//AudioClip bounceClip = MediaTools.load.AudioClip("bounce.au");
 
 /** Width and height of application window in pixels */
 	public static final int APPLICATION_WIDTH = 400;
@@ -63,14 +63,14 @@ public class Breakout extends GraphicsProgram
 		initGame();
 		addMouseListeners();
 	}
-
+ 
 	public void initGame(){
 		for (int r=0; r<NBRICK_ROWS; r++){
 			for (int c=0; c<NBRICK_ROWS; c++){
 				GRect brick = new GRect (r*(BRICK_SEP + BRICK_WIDTH) , BRICK_Y_OFFSET+ c*(BRICK_HEIGHT + BRICK_SEP) , BRICK_WIDTH , BRICK_HEIGHT ); 
 
 				if (c<=1){
-					brick.setColor(Color.red);
+					brick.setColor(Color.red); 
 				}
 				if ((c>1)&&(c<=3)){
 					brick.setColor(Color.orange);
@@ -89,15 +89,18 @@ public class Breakout extends GraphicsProgram
 				}
 				brick.setFilled(true);
 				add (brick);
-			}
-
-			paddle = new GRect ( WIDTH/2, HEIGHT- PADDLE_Y_OFFSET , PADDLE_WIDTH, PADDLE_HEIGHT)
+			}	
 		}
+		paddle = new GRect ( WIDTH/2+.5*PADDLE_WIDTH, HEIGHT- PADDLE_Y_OFFSET , PADDLE_WIDTH, PADDLE_HEIGHT);
+		paddle.setFilled(true);
+		add(paddle);
 	}
 	public void mouseMoved(MouseEvent event){
 		int x = event.getX();
 		int y = event.getY();
-		//paddle.setLocation(x-30,y-30);
+		if ((x>= (PADDLE_WIDTH/2))&&(x<=WIDTH - PADDLE_WIDTH/2)){  
+			paddle.setLocation(x- PADDLE_WIDTH/2, HEIGHT - PADDLE_Y_OFFSET);
+		}
 	}
 }
 
