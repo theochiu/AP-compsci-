@@ -24,7 +24,7 @@ public class BouncingBrett extends GraphicsProgram
           pause(5);
           if (brett.getX()<0)
           {
-            dx = -dy;   
+            dx = -dx;   
           }         
           if (brett.getX()>width)
           {
