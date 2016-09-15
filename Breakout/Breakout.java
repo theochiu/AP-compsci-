@@ -96,7 +96,7 @@ public class Breakout extends GraphicsProgram
 				}
 				brick.setFilled(true);
 				add (brick);
-			}	
+			}   
 		}
 		paddle = new GRect ( WIDTH/2+.5*PADDLE_WIDTH, HEIGHT- PADDLE_Y_OFFSET , PADDLE_WIDTH, PADDLE_HEIGHT);
 		paddle.setFilled(true);
@@ -145,6 +145,22 @@ public class Breakout extends GraphicsProgram
 		double y = ball.getY();
 		System.out.println(x+","+y);
 	*/
+	}
+
+	public void collisionCheck(){
+		double x = ball.getX();
+		double y = ball.getY();
+		int r = BALL_RADIUS;
+
+		GObject obj = getElementAt(x,y);
+		GObject obj1 = getElementAt(x,y+2*r);
+		GObject obj2 = getElementAt(x+2*r,y);
+		GObject obj3 = getElementAt(x+2*r, y+2*r);
+
+		if ((obj == paddle)|| (obj1==paddle)||(obj2==paddle)||(obj3==paddle)){
+			dy = -dy;
+			dx = -dx;
+		}
 	}
 }
 
