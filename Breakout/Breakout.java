@@ -62,10 +62,13 @@ public class Breakout extends GraphicsProgram
 	public void run() {
 		initGame();
 		addMouseListeners();
+		println("test");
 		while (true){
 			updateBall();
+			collisionCheck(); 
 			pause(5);
 		}
+
 	}
  
 	public void initGame(){
@@ -99,8 +102,16 @@ public class Breakout extends GraphicsProgram
 		paddle.setFilled(true);
 		add(paddle);
 
-		ball = new GOval (HEIGHT - 30, (WIDTH/2 - BALL_RADIUS), BALL_RADIUS);
+		ball = new GOval (WIDTH/2 - BALL_RADIUS , HEIGHT - 5* BALL_RADIUS, BALL_RADIUS, BALL_RADIUS);
+		ball.setFilled(true);
 		add(ball);
+
+		dx = 1+Math.random()*2;
+		if (Math.random()>.5){
+			dx = -dx;
+		}
+
+		dy = 3.0;
 		
 	}
 
@@ -110,14 +121,11 @@ public class Breakout extends GraphicsProgram
 		if ((x>= (PADDLE_WIDTH/2))&&(x<=WIDTH - PADDLE_WIDTH/2)){  
 			paddle.setLocation(x- PADDLE_WIDTH/2, HEIGHT - PADDLE_Y_OFFSET);
 		}
-		System.out.println("x= "+x+" \ny= "+y);
+		//System.out.println("x= "+x+" \ny= "+y);
 	}
 
 	public void updateBall(){
-		dx = 1+Math.random()*2;
-		if (Math.random()>.5){
-			dx = -dx;
-		}
+		
 		ball.move(dx, dy);
 		pause(5); 
 		if (ball.getX()<=0){
@@ -128,10 +136,15 @@ public class Breakout extends GraphicsProgram
 		}
 		if (ball.getY()<=0){
 			dy = -dy;   
-		}         
-		if (ball.getY()>=WIDTH - BALL_RADIUS*2){
+		}
+		if (ball.getY()>=HEIGHT - BALL_RADIUS*2){
 			dy = -dy;   
 		}
+	/*
+		double x = ball.getX();
+		double y = ball.getY();
+		System.out.println(x+","+y);
+	*/
 	}
 }
 
