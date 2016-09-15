@@ -98,11 +98,11 @@ public class Breakout extends GraphicsProgram
 				add (brick);
 			}   
 		}
-		paddle = new GRect ( WIDTH/2+.5*PADDLE_WIDTH, HEIGHT- PADDLE_Y_OFFSET , PADDLE_WIDTH, PADDLE_HEIGHT);
+		paddle = new GRect ( WIDTH/2+.5*PADDLE_WIDTH, HEIGHT- PADDLE_Y_OFFSET -PADDLE_HEIGHT , PADDLE_WIDTH, PADDLE_HEIGHT);
 		paddle.setFilled(true);
 		add(paddle);
 
-		ball = new GOval (WIDTH/2 - BALL_RADIUS , HEIGHT - 5* BALL_RADIUS, BALL_RADIUS, BALL_RADIUS);
+		ball = new GOval (WIDTH/2 - BALL_RADIUS , HEIGHT - 5* BALL_RADIUS, 2*BALL_RADIUS, 2*BALL_RADIUS);
 		ball.setFilled(true);
 		add(ball);
 
@@ -119,7 +119,7 @@ public class Breakout extends GraphicsProgram
 		int x = event.getX();
 		int y = event.getY();
 		if ((x>= (PADDLE_WIDTH/2))&&(x<=WIDTH - PADDLE_WIDTH/2)){  
-			paddle.setLocation(x- PADDLE_WIDTH/2, HEIGHT - PADDLE_Y_OFFSET);
+			paddle.setLocation(x- PADDLE_WIDTH/2, HEIGHT - PADDLE_Y_OFFSET - PADDLE_HEIGHT);
 		}
 		//System.out.println("x= "+x+" \ny= "+y);
 	}
@@ -131,13 +131,13 @@ public class Breakout extends GraphicsProgram
 		if (ball.getX()<=0){
 			dx = -dx;   
 		}         
-		if (ball.getX()>=WIDTH - BALL_RADIUS*2){
+		if (ball.getX()>=WIDTH - BALL_RADIUS*4){
 			dx = -dx;   
 		}
 		if (ball.getY()<=0){
 			dy = -dy;   
 		}
-		if (ball.getY()>=HEIGHT - BALL_RADIUS*2){
+		if (ball.getY()>=HEIGHT - BALL_RADIUS*4){
 			dy = -dy;   
 		}
 	/*
@@ -152,15 +152,48 @@ public class Breakout extends GraphicsProgram
 		double y = ball.getY();
 		int r = BALL_RADIUS;
 
-		GObject obj = getElementAt(x,y);
-		GObject obj1 = getElementAt(x,y+2*r);
-		GObject obj2 = getElementAt(x+2*r,y);
-		GObject obj3 = getElementAt(x+2*r, y+2*r);
+		GObject obj = getElementAt(x,y); 				// top left
+		GObject obj1 = getElementAt(x,y+2*r);			// bottom left
+		GObject obj2 = getElementAt(x+2*r,y);			// top right
+		GObject obj3 = getElementAt(x+2*r, y+2*r);		// bottom right
 
 		if ((obj == paddle)|| (obj1==paddle)||(obj2==paddle)||(obj3==paddle)){
 			dy = -dy;
-			dx = -dx;
+		//	System.out.println("PADDLE");
+			//dx = -dx;
 		}
+
+/*
+		if ((obj!=paddle)&&(obj!=null)||(obj1!=paddle)&&(obj1!=null)||(obj2!=paddle)&&(obj2!=null)||(obj3!=paddle)&&(obj3!=null)){
+
+		//if ((obj == brick)|| (obj1==brick)||(obj2==brick)||(obj3==brick)){
+			dy=-dy;
+			remove(obj);
+		//	System.out.println("BRICK");
+			//dx = -dx;
+		}	
+*/
+
+		else if((obj!=paddle)&&(obj!=null)){
+			dy=-dy;
+			remove(obj);
+		}
+
+		else if((obj1!=paddle)&&(obj1!=null)){
+			dy=-dy;
+			remove(obj1);
+		}
+
+		else if((obj2!=paddle)&&(obj2!=null)){
+			dy=-dy;
+			remove(obj2);
+		}
+
+		else if((obj3!=paddle)&&(obj3!=null)){
+			dy=-dy;
+			remove(obj3);
+		}
+
 	}
 }
 
