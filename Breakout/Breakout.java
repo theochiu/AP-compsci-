@@ -62,6 +62,7 @@ public class Breakout extends GraphicsProgram
 	private int numBricks;
 
 	private boolean testing = true;
+	private GLabel testlabel; 
 
 	
 /** Runs the Breakout program. */
@@ -69,6 +70,8 @@ public class Breakout extends GraphicsProgram
 
 		if (testing==true){
 			lives = -lives; 
+			testlabel = new GLabel("testing=true" , WIDTH/2, 10);
+			add(testlabel);
 		}
 		numBricks = 0;
 		initGame();
@@ -80,8 +83,10 @@ public class Breakout extends GraphicsProgram
 				updateBall();
 				collisionCheck(); 
 				pause(5);
-				System.out.println(numBricks);
+				System.out.println(numBricks + " , "+ won());
+				if (won()){break;}
 			}
+			if (won()){break;}
 			lives--;
 			scoreboard.setLabel("Lives remaining: " + lives);
 			removeAll();
@@ -93,6 +98,7 @@ public class Breakout extends GraphicsProgram
 
 	//	if (won()){
 			GLabel winner = new GLabel("You Win", WIDTH/2, HEIGHT/2);
+			add(winner);
 	//	}
 
 		while (!won()){
@@ -238,26 +244,26 @@ public class Breakout extends GraphicsProgram
 		}	
 */
 
-		else if((obj!=paddle)&&(obj!=null)&&(obj!=scoreboard)){
+		else if((obj!=paddle)&&(obj!=null)&&(obj!=scoreboard)&&(obj!=testlabel)){
 			dy=-dy;
 			remove(obj);
 			numBricks--;
 		}
 
-		else if((obj1!=paddle)&&(obj1!=null)&&(obj!=scoreboard)){
+		else if((obj1!=paddle)&&(obj1!=null)&&(obj1!=scoreboard)&&(obj1!=testlabel)){
 			dy=-dy;
 			remove(obj1);
 			numBricks--;
 
 		}
 
-		else if((obj2!=paddle)&&(obj2!=null)&&(obj!=scoreboard)){
+		else if((obj2!=paddle)&&(obj2!=null)&&(obj2!=scoreboard)&&(obj2!=testlabel)){
 			dy=-dy;
 			remove(obj2);
 			numBricks--;
 		}
 
-		else if((obj3!=paddle)&&(obj3!=null)&&(obj!=scoreboard)){
+		else if((obj3!=paddle)&&(obj3!=null)&&(obj3!=scoreboard)&&(obj3!=testlabel)){
 			dy=-dy;
 			remove(obj3);
 			numBricks--;
