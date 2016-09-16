@@ -95,7 +95,7 @@ public class Breakout extends GraphicsProgram
 			numBricks=0;
 			initGame();
 		}
-		
+
 		removeAll();
 
 		if (won()){
@@ -118,7 +118,7 @@ public class Breakout extends GraphicsProgram
 		boolean yes;
 		if (numBricks==0){
 			yes=true;
-		} else{
+		} else {
 			yes=false;
 		}
 		return yes;
@@ -175,6 +175,7 @@ public class Breakout extends GraphicsProgram
 		if (Math.random()>.5){
 			dx = -dx;
 		}
+
 		dy = 3.0;
 
 		scoreboard = new GLabel("Lives remaining: " + lives, 5,10);
@@ -193,10 +194,11 @@ public class Breakout extends GraphicsProgram
 		ball.move(dx, dy);
 		pause(5);
 		boolean dead =true ; 
+
 		if (ball.getX()<=0){
 			dx = -dx;  
 			bounceClip.play(); 
-			dead = true; 
+			dead = true;
 		}         
 		else if (ball.getX()>WIDTH - BALL_RADIUS*2){
 			dx = -dx;   
