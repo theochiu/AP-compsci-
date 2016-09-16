@@ -57,18 +57,61 @@ public class Breakout extends GraphicsProgram
 	private GOval ball;
 	private double dx;
 	private double dy;
+	private int lives = 5; 
+	private GLabel scoreboard;
+	private int numBricks;
+
+	private boolean testing = true;
+
 	
 /** Runs the Breakout program. */
 	public void run() {
+
+		if (testing==true){
+			lives = -lives; 
+		}
+		numBricks = 0;
 		initGame();
 		addMouseListeners();
-		println("test");
-		while (true){
-			updateBall();
-			collisionCheck(); 
-			pause(5);
-		}
+	//	println("test");
 
+		while ((lives!=0)&&(!won())){
+			while (updateBall()){
+				updateBall();
+				collisionCheck(); 
+				pause(5);
+				System.out.println(numBricks);
+			}
+			lives--;
+			scoreboard.setLabel("Lives remaining: " + lives);
+			removeAll();
+			pause(1000);
+			numBricks=0;
+			initGame();
+		}
+		removeAll();
+
+	//	if (won()){
+			GLabel winner = new GLabel("You Win", WIDTH/2, HEIGHT/2);
+	//	}
+
+		while (!won()){
+			GLabel loser = new GLabel ("You Lose", WIDTH/2, HEIGHT/2);
+			add(loser);
+			pause(800);			// TO-DO get the flashing animation to work. 
+			remove(loser);
+		}
+	}
+
+	// check for winning
+	public boolean won(){
+		boolean yes;
+		if (numBricks==0){
+			yes=true;
+		} else{
+			yes=false;
+		}
+		return yes;
 	}
  
 	public void initGame(){
@@ -96,13 +139,23 @@ public class Breakout extends GraphicsProgram
 				}
 				brick.setFilled(true);
 				add (brick);
+				numBricks++;
 			}   
 		}
-		paddle = new GRect ( WIDTH/2+.5*PADDLE_WIDTH, HEIGHT- PADDLE_Y_OFFSET -PADDLE_HEIGHT , PADDLE_WIDTH, PADDLE_HEIGHT);
-		paddle.setFilled(true);
-		add(paddle);
 
-		ball = new GOval (WIDTH/2 - BALL_RADIUS , HEIGHT - 5* BALL_RADIUS, 2*BALL_RADIUS, 2*BALL_RADIUS);
+		if (testing==true){
+			paddle = new GRect ( WIDTH/2+.5*PADDLE_WIDTH, HEIGHT- PADDLE_Y_OFFSET -PADDLE_HEIGHT , WIDTH, PADDLE_HEIGHT);
+			paddle.setFilled(true);
+			add(paddle);
+		}
+
+		if (testing==false){
+			paddle = new GRect ( WIDTH/2+.5*PADDLE_WIDTH, HEIGHT- PADDLE_Y_OFFSET -PADDLE_HEIGHT , PADDLE_WIDTH, PADDLE_HEIGHT);
+			paddle.setFilled(true);
+			add(paddle);
+		}
+
+		ball = new GOval (WIDTH/2 - BALL_RADIUS , HEIGHT/2 - BALL_RADIUS, 2*BALL_RADIUS, 2*BALL_RADIUS);
 		ball.setFilled(true);
 		add(ball);
 
@@ -110,8 +163,10 @@ public class Breakout extends GraphicsProgram
 		if (Math.random()>.5){
 			dx = -dx;
 		}
-
 		dy = 3.0;
+
+		scoreboard = new GLabel("Lives remaining: " + lives, 5,10);
+		add(scoreboard);
 		
 	}
 
@@ -124,22 +179,31 @@ public class Breakout extends GraphicsProgram
 		//System.out.println("x= "+x+" \ny= "+y);
 	}
 
-	public void updateBall(){
+	public boolean updateBall(){
 		
 		ball.move(dx, dy);
-		pause(5); 
+		pause(5);
+		boolean dead =true ; 
 		if (ball.getX()<=0){
 			dx = -dx;   
+			dead = true; 
 		}         
-		if (ball.getX()>=WIDTH - BALL_RADIUS*4){
+		else if (ball.getX()>WIDTH - BALL_RADIUS*2){
 			dx = -dx;   
+			dead = true; 
 		}
-		if (ball.getY()<=0){
-			dy = -dy;   
+		else if (ball.getY()<=0){
+			dy = -dy;
+			dead = true; 
 		}
-		if (ball.getY()>=HEIGHT - BALL_RADIUS*4){
-			dy = -dy;   
+		else if (ball.getY()>=HEIGHT - BALL_RADIUS*2){
+			//dy = -dy;
+			dead = false;
+		//	lives--;
+		//	scoreboard.setLabel("Lives remaining: " + lives);
 		}
+
+		return dead; 
 	/*
 		double x = ball.getX();
 		double y = ball.getY();
@@ -174,24 +238,29 @@ public class Breakout extends GraphicsProgram
 		}	
 */
 
-		else if((obj!=paddle)&&(obj!=null)){
+		else if((obj!=paddle)&&(obj!=null)&&(obj!=scoreboard)){
 			dy=-dy;
 			remove(obj);
+			numBricks--;
 		}
 
-		else if((obj1!=paddle)&&(obj1!=null)){
+		else if((obj1!=paddle)&&(obj1!=null)&&(obj!=scoreboard)){
 			dy=-dy;
 			remove(obj1);
+			numBricks--;
+
 		}
 
-		else if((obj2!=paddle)&&(obj2!=null)){
+		else if((obj2!=paddle)&&(obj2!=null)&&(obj!=scoreboard)){
 			dy=-dy;
 			remove(obj2);
+			numBricks--;
 		}
 
-		else if((obj3!=paddle)&&(obj3!=null)){
+		else if((obj3!=paddle)&&(obj3!=null)&&(obj!=scoreboard)){
 			dy=-dy;
 			remove(obj3);
+			numBricks--;
 		}
 
 	}
