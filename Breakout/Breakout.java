@@ -1,4 +1,3 @@
-
 import acm.graphics.*;
 import acm.program.*;
 import acm.util.*;
@@ -10,7 +9,7 @@ public class Breakout extends GraphicsProgram
 {
 
 // add in sounds!
-	//AudioClip bounceClip = MediaTools.load.AudioClip("bounce.au");
+	AudioClip bounceClip;
 
 /** Width and height of application window in pixels */
 	public static final int APPLICATION_WIDTH = 400;
@@ -57,7 +56,7 @@ public class Breakout extends GraphicsProgram
 	private GOval ball;
 	private double dx;
 	private double dy;
-	private int lives = 5; 
+	private int lives; 
 	private GLabel scoreboard;
 	private int numBricks;
 
@@ -67,7 +66,7 @@ public class Breakout extends GraphicsProgram
 	
 /** Runs the Breakout program. */
 	public void run() {
-
+		lives=5;
 		if (testing==true){
 			lives = -lives; 
 			testlabel = new GLabel("testing=true" , WIDTH/2, 10);
@@ -96,13 +95,15 @@ public class Breakout extends GraphicsProgram
 		}
 		removeAll();
 
-	//	if (won()){
+		if (won()){
 			GLabel winner = new GLabel("You Win", WIDTH/2, HEIGHT/2);
+			winner.setFont("*-bold-32");
 			add(winner);
-	//	}
+		}	
 
 		while (!won()){
 			GLabel loser = new GLabel ("You Lose", WIDTH/2, HEIGHT/2);
+			loser.setFont("*-bold-32");
 			add(loser);
 			pause(800);			// TO-DO get the flashing animation to work. 
 			remove(loser);
@@ -121,6 +122,7 @@ public class Breakout extends GraphicsProgram
 	}
  
 	public void initGame(){
+		bounceClip = MediaTools.loadAudioClip("bounce.au");
 		for (int r=0; r<NBRICK_ROWS; r++){
 			for (int c=0; c<NBRICK_ROWS; c++){
 				GRect brick = new GRect (r*(BRICK_SEP + BRICK_WIDTH) , BRICK_Y_OFFSET+ c*(BRICK_HEIGHT + BRICK_SEP) , BRICK_WIDTH , BRICK_HEIGHT ); 
@@ -191,20 +193,24 @@ public class Breakout extends GraphicsProgram
 		pause(5);
 		boolean dead =true ; 
 		if (ball.getX()<=0){
-			dx = -dx;   
+			dx = -dx;  
+			bounceClip.play(); 
 			dead = true; 
 		}         
 		else if (ball.getX()>WIDTH - BALL_RADIUS*2){
 			dx = -dx;   
+			bounceClip.play(); 
 			dead = true; 
 		}
 		else if (ball.getY()<=0){
 			dy = -dy;
+			bounceClip.play(); 
 			dead = true; 
 		}
 		else if (ball.getY()>=HEIGHT - BALL_RADIUS*2){
 			//dy = -dy;
 			dead = false;
+			bounceClip.play(); 
 		//	lives--;
 		//	scoreboard.setLabel("Lives remaining: " + lives);
 		}
@@ -229,6 +235,7 @@ public class Breakout extends GraphicsProgram
 
 		if ((obj == paddle)|| (obj1==paddle)||(obj2==paddle)||(obj3==paddle)){
 			dy = -dy;
+			bounceClip.play(); 
 		//	System.out.println("PADDLE");
 			//dx = -dx;
 		}
@@ -248,25 +255,28 @@ public class Breakout extends GraphicsProgram
 			dy=-dy;
 			remove(obj);
 			numBricks--;
+			bounceClip.play(); 
 		}
 
 		else if((obj1!=paddle)&&(obj1!=null)&&(obj1!=scoreboard)&&(obj1!=testlabel)){
 			dy=-dy;
 			remove(obj1);
 			numBricks--;
-
+			bounceClip.play(); 
 		}
 
 		else if((obj2!=paddle)&&(obj2!=null)&&(obj2!=scoreboard)&&(obj2!=testlabel)){
 			dy=-dy;
 			remove(obj2);
 			numBricks--;
+			bounceClip.play(); 
 		}
 
 		else if((obj3!=paddle)&&(obj3!=null)&&(obj3!=scoreboard)&&(obj3!=testlabel)){
 			dy=-dy;
 			remove(obj3);
 			numBricks--;
+			bounceClip.play(); 
 		}
 
 	}
