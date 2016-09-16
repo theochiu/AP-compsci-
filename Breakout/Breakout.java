@@ -75,7 +75,6 @@ public class Breakout extends GraphicsProgram
 		numBricks = 0;
 		initGame();
 		addMouseListeners();
-	//	println("test");
 
 		while ((lives!=0)&&(!won())){
 			while (updateBall()){
@@ -83,9 +82,12 @@ public class Breakout extends GraphicsProgram
 				collisionCheck(); 
 				pause(5);
 				System.out.println(numBricks + " , "+ won());
+
 				if (won()){break;}
 			}
+
 			if (won()){break;}
+
 			lives--;
 			scoreboard.setLabel("Lives remaining: " + lives);
 			removeAll();
@@ -93,6 +95,7 @@ public class Breakout extends GraphicsProgram
 			numBricks=0;
 			initGame();
 		}
+		
 		removeAll();
 
 		if (won()){
@@ -145,6 +148,7 @@ public class Breakout extends GraphicsProgram
 				if ((c>7)&&(c<=9)){
 					brick.setColor(Color.cyan);
 				}
+
 				brick.setFilled(true);
 				add (brick);
 				numBricks++;
@@ -175,7 +179,6 @@ public class Breakout extends GraphicsProgram
 
 		scoreboard = new GLabel("Lives remaining: " + lives, 5,10);
 		add(scoreboard);
-		
 	}
 
 	public void mouseMoved(MouseEvent event){
@@ -184,11 +187,9 @@ public class Breakout extends GraphicsProgram
 		if ((x>= (PADDLE_WIDTH/2))&&(x<=WIDTH - PADDLE_WIDTH/2)){  
 			paddle.setLocation(x- PADDLE_WIDTH/2, HEIGHT - PADDLE_Y_OFFSET - PADDLE_HEIGHT);
 		}
-		//System.out.println("x= "+x+" \ny= "+y);
 	}
 
 	public boolean updateBall(){
-		
 		ball.move(dx, dy);
 		pause(5);
 		boolean dead =true ; 
@@ -208,19 +209,11 @@ public class Breakout extends GraphicsProgram
 			dead = true; 
 		}
 		else if (ball.getY()>=HEIGHT - BALL_RADIUS*2){
-			//dy = -dy;
 			dead = false;
 			bounceClip.play(); 
-		//	lives--;
-		//	scoreboard.setLabel("Lives remaining: " + lives);
 		}
 
 		return dead; 
-	/*
-		double x = ball.getX();
-		double y = ball.getY();
-		System.out.println(x+","+y);
-	*/
 	}
 
 	public void collisionCheck(){
@@ -235,27 +228,14 @@ public class Breakout extends GraphicsProgram
 
 		if ((obj == paddle)|| (obj1==paddle)||(obj2==paddle)||(obj3==paddle)){
 			dy = -dy;
-			bounceClip.play(); 
-		//	System.out.println("PADDLE");
-			//dx = -dx;
+			bounceClip.play();
 		}
-
-/*
-		if ((obj!=paddle)&&(obj!=null)||(obj1!=paddle)&&(obj1!=null)||(obj2!=paddle)&&(obj2!=null)||(obj3!=paddle)&&(obj3!=null)){
-
-		//if ((obj == brick)|| (obj1==brick)||(obj2==brick)||(obj3==brick)){
-			dy=-dy;
-			remove(obj);
-		//	System.out.println("BRICK");
-			//dx = -dx;
-		}	
-*/
 
 		else if((obj!=paddle)&&(obj!=null)&&(obj!=scoreboard)&&(obj!=testlabel)){
 			dy=-dy;
 			remove(obj);
 			numBricks--;
-			bounceClip.play(); 
+			bounceClip.play();
 		}
 
 		else if((obj1!=paddle)&&(obj1!=null)&&(obj1!=scoreboard)&&(obj1!=testlabel)){
@@ -278,7 +258,6 @@ public class Breakout extends GraphicsProgram
 			numBricks--;
 			bounceClip.play(); 
 		}
-
 	}
 }
 
