@@ -1,3 +1,5 @@
+// Theodore Chiu, 2016, All Rights Reserved
+
 import acm.graphics.*;
 import acm.program.*;
 import acm.util.*;
@@ -82,7 +84,6 @@ public class Breakout extends GraphicsProgram
 				collisionCheck(); 
 				pause(5);
 				System.out.println(numBricks + " , "+ won());
-
 				if (won()){break;}
 			}
 
@@ -228,7 +229,7 @@ public class Breakout extends GraphicsProgram
 		GObject obj2 = getElementAt(x+2*r,y);			// top right
 		GObject obj3 = getElementAt(x+2*r, y+2*r);		// bottom right
 
-		if (((obj == paddle)|| (obj1==paddle)||(obj2==paddle)||(obj3==paddle))&&(dy>0)){
+		if (((obj == paddle)||(obj1==paddle)||(obj2==paddle)||(obj3==paddle))&&(dy>0)){
 			dy = -dy;
 			bounceClip.play();
 		}
