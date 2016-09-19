@@ -60,7 +60,7 @@ public class Breakout extends GraphicsProgram
 	private GLabel scoreboard;
 	private int numBricks;
 
-	private boolean testing = true;
+	private boolean testing = false;
 	private GLabel testlabel; 
 
 	
@@ -228,7 +228,7 @@ public class Breakout extends GraphicsProgram
 		GObject obj2 = getElementAt(x+2*r,y);			// top right
 		GObject obj3 = getElementAt(x+2*r, y+2*r);		// bottom right
 
-		if ((obj == paddle)|| (obj1==paddle)||(obj2==paddle)||(obj3==paddle)){
+		if (((obj == paddle)|| (obj1==paddle)||(obj2==paddle)||(obj3==paddle))&&(dy>0)){
 			dy = -dy;
 			bounceClip.play();
 		}
