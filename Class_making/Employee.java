@@ -13,7 +13,7 @@ public class Employee{
 		return name;
 	}
 
-	public void getSalary(){
+	public double getSalary(){
 		return salary;
 	}
 
