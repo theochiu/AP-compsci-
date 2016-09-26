@@ -18,6 +18,6 @@ public class Employee{
 	}
 
 	public void raiseSalary(double amount){
-
+		salary+=amount;
 	}
 }

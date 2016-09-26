@@ -9,11 +9,11 @@ public class DieHard extends ConsoleProgram
         WaterPuzzle puzz = new WaterPuzzle();
         
         puzz.fill("A");
-        puzz.pourFromAToB();
+        puzz.pourFromAtoB();
         puzz.empty("B");
-        puzz.pourFromAToB();
+        puzz.pourFromAtoB();
         puzz.fill("A");
-        puzz.pourFromAToB();
+        puzz.pourFromAtoB();
         
         println(puzz.getAmount("A"));
     }
