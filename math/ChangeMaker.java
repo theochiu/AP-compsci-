@@ -6,9 +6,15 @@ public class ChangeMaker extends ConsoleProgram
 
 	public void run()
 	{
-		double cost = readDouble("Enter cost: ");
-		double paid = readDouble("Enter paid: ");
-		double change = paid - cost;
+		double cost1 = readDouble("Enter cost: ");
+		double paid1 = readDouble("Enter paid: ");
+	//	double change1 = paid - cost;
+
+		long cost = (long)cost1;
+		long paid = (long)paid1;
+		long change = paid-cost;
+
+
 		int changeInCents = (int) (change*100);
 		int dollars = changeInCents/100;
 		changeInCents%=100;
