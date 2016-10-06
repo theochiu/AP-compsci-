@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Hangman()
+comment1.params=letter
+comment1.target=boolean\ isLetter(String)
+comment2.target=String\ getPhraseSoFar()
+comment3.target=String\ getActualAnswer()
+comment4.target=String\ getLettersGuessed()
+comment5.target=int\ getGuessesLeft()
+comment6.params=guess
+comment6.target=boolean\ makeGuess(String)
+numComments=7
