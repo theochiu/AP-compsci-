@@ -21,11 +21,11 @@ public class Paycheck
 
 		double netpay = 0;
 
-		if (basepay<200)
+		if (basepay < 200)
 			netpay = basepay*(1-.11);
-		else if ( basepay <400)
+		else if (basepay < 400)
 			netpay = basepay*(1-.15);
-		else if (basepay<600)
+		else if (basepay < 600)
 			netpay = basepay*(1-.18);
 		else 
 			netpay = basepay*(1-.24);

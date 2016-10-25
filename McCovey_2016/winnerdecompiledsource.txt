@@ -1,0 +1,27 @@
+/*
+ * Decompiled with CFR 0_118.
+ * 
+ * Could not load the following classes:
+ *  McCoveyPlayer
+ */
+public class Winner2015
+implements McCoveyPlayer {
+    public boolean rollAgain(int myScore, int yourScore, int turnScore) {
+        if (myScore + turnScore >= 44) {
+            return false;
+        }
+        if (44 - (myScore + turnScore) <= 10) {
+            return true;
+        }
+        if (44 - yourScore < 17) {
+            return true;
+        }
+        if (turnScore > 11 && myScore + turnScore - yourScore > 2) {
+            return false;
+        }
+        if (yourScore - (myScore + turnScore) > 14) {
+            return true;
+        }
+        return turnScore < 15;
+    }
+}
