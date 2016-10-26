@@ -7,6 +7,8 @@ public class theoplayer implements McCoveyPlayer
 	{
 		if (myScore + turnScore >=44)
 			return false;
+		if (44 - myScore+turnScore <= 39)
+			return true;
 		if ((44-yourScore <= 17) && (turnScore<30))
 			return true;
 
