@@ -24,6 +24,7 @@ public class McCoveyGUI extends Program
         playerClassNames = new TreeSet<String>();
         addPlayerClass("RandomPlayer");
         addPlayerClass("GetTo9Player");
+        addPlayerClass("Theoplayer");
         setSize(900,300);
         setLayout(new GridLayout(2,1));
 

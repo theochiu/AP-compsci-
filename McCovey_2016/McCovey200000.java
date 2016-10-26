@@ -16,6 +16,7 @@ public class McCovey200000 extends GraphicsProgram
         
         // all you should need to do is change the next two lines
         p1 = new theoplayer();
+        //p2 = new a30vs40();
         p2 = new Winner2015();
         
         bar1 = new GRect(0,100,0,100);
