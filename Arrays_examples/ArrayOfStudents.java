@@ -22,7 +22,7 @@ public class ArrayOfStudents extends ConsoleProgram
 
 		String champion = students[0];
 		for (int i=0; i<students.length; i++){
-			if (students[i].length() > champion.length)
+			if (students[i].length() > champion.length())
 				champion = students[i];
 		}
 		println("The longest name is " + champion);

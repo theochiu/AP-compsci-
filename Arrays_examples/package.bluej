@@ -1,8 +1,8 @@
 #BlueJ package file
-package.editor.height=571
-package.editor.width=1248
-package.editor.x=-8
-package.editor.y=-8
+package.editor.height=372
+package.editor.width=540
+package.editor.x=321
+package.editor.y=80
 package.numDependencies=0
 package.numTargets=4
 package.showExtends=true
@@ -39,8 +39,8 @@ target2.x=70
 target2.y=70
 target3.editor.height=700
 target3.editor.width=900
-target3.editor.x=32
-target3.editor.y=12
+target3.editor.x=355
+target3.editor.y=25
 target3.height=50
 target3.name=fib
 target3.naviview.expanded=true

@@ -1,4 +1,6 @@
 #BlueJ class context
-comment0.params=index
-comment0.target=int\ main(int)
-numComments=1
+comment0.params=args
+comment0.target=void\ main(java.lang.String[])
+comment1.params=index
+comment1.target=int\ fibonacci(int)
+numComments=2
