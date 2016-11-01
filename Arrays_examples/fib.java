@@ -1,7 +1,7 @@
 
 
 import java.util.Scanner;
-public class fib{
+public class fib {
 
 	public static void main(String[] args){
 		Scanner num = new Scanner(System.in);
