@@ -17,7 +17,19 @@ public class ConsonantGame extends GraphicsProgram
 				generator = new RandomWordGenerator();
 				turns = 0;
 				// fill up labels with 25 random labels here
+
+				for (int i=0;i<25;i++) {
+					GLabel randomLabel = getRandomLabel();
+					labels.add(randomLabel);
+				}
+
 				addKeyListeners();
+
+				while (labels.size()>0)
+					pause(10);
+
+				GLabel message = new GLabel("You won! It took you " + turns+ "turns", 50,100);
+				add(message);
 				// play the game and tell me how many turns it took
 				// to win here
 				
@@ -27,6 +39,24 @@ public class ConsonantGame extends GraphicsProgram
 		{
 				String letter = KeyEvent.getKeyText(event.getKeyCode()).toUpperCase();  
 				// handle one key press here
+
+				String vowels = "AEIOU";
+				if (vowels.indexOf(letter)!=-1)
+					return;
+				for (int i=0; i<labels.size();i++) {
+					if (labels.get(i).getLabel().indexOf(letter)!=-1) {
+						remove(labels.get(i));
+						labels.remove(i);
+					}
+				}
+				turns ++;
+				if (turns%3==0) {
+					for (int i=0;i<5;i++) {
+						GLabel randomLabel = getRandomLabel();
+						labels.add(randomLabel);
+					}
+				}
+
 		}
 
 		public GLabel getRandomLabel()
@@ -45,11 +75,15 @@ public class ConsonantGame extends GraphicsProgram
 			label.setFont("*-*-"+size);
 
 			while (label.getWidth()+label.getX()>getWidth()){
-				label.setLocation((int)(Math.random()*getWidth()),label.getY());
+				label.setLocation((int)(Math.random()*getWidth()),label.getX());
+			}
+
+			while (label.getHeight()+label.getY()>getHeight()){
+				label.setLocation((int)(Math.random()*getHeight()),label.getY());
 			}
 
 
-
+			add(label);
 
 			return label;
 		}
