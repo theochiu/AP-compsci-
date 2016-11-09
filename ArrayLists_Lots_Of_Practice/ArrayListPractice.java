@@ -140,7 +140,12 @@ public class ArrayListPractice extends ConsoleProgram
 	// element of the array returned should be false
 	public boolean[] evenBoolArrayList(ArrayList<Integer> a)
 	{
-		return null; // remove this when you write the method
+		
+		boolean[] result = new boolean[a.size()];
+		for ()
+
+
+		//return null; // remove this when you write the method
 	}
 
 	// #4 - returns the position (index) of the first occurence of whatToFind in the array.  
