@@ -85,6 +85,17 @@ public class Picture extends SimplePicture
 
 	}
 
+	public void posterize(){
+		Pixel[] pixels = getPixels();
+
+		for (Pixel pixel : pixels){
+			pixel.setRed(pixel.getRed()/64*64+32);
+			pixel.setBlue(pixel.getBlue()/64*64+32);
+			pixel.setGreen(pixel.getGreen()/64*64+32);
+
+		}
+	}
+
 	/** Method to set the blue to 0 */
 	public void zeroBlue()
 	{
@@ -111,8 +122,22 @@ public class Picture extends SimplePicture
 	public void greyscale(){
 		Pixel[] pixels = getPixels();
 
-		for (Pixel[] pixels : pixels) {
-			int a = (pixel.getBlue() + pixel.getRed() + pixel.getGreen())/3
+		for (Pixel pixel : pixels) {
+			int a = (pixel.getBlue() + pixel.getRed() + pixel.getGreen())/3;
+			pixel.setGreen(a);
+			pixel.setRed(a);
+			pixel.setBlue(a);
+		}
+	}
+
+	public void negative(){
+		Pixel[] pixels = getPixels();
+
+		for (Pixel pixel : pixels){
+			pixel.setRed(255-pixel.getRed());
+			pixel.setBlue(255-pixel.getBlue());
+			pixel.getRed(255-pixel.getGreen());
+
 		}
 	}
 	
@@ -123,8 +148,18 @@ public class Picture extends SimplePicture
 		for (Pixel pixel : pixels)
 		{
 			pixel.setBlue(0);
-						pixel.setGreen(0);
-						pixel.setRed(pixel.getRed()*10);
+			pixel.setGreen(0);
+			pixel.setRed(pixel.getRed()*10);
+		}
+	}
+
+	public void solveCopper(){
+		Pixel[] pixels = getPixels();
+
+		for (Pixel pixel : pixels){
+			pixel.setBlue(0);
+			pixel.setRed(0);
+			pixel.setGreen(pixel.getGreen()*10);
 		}
 	}
 
@@ -133,11 +168,16 @@ public class Picture extends SimplePicture
 	 */
 	public static void main(String[] args) 
 	{
-		Picture beach = new Picture("images/" + "beach.jpg");
+		Picture beach = new Picture("images/" + "gold.png");
 		beach.explore();
 		//beach.zeroBlue();
-		beach.explore();
+		//beach.greyscale();
+		//beach.posterize();
+		//beach.explore();
 		//beach.maxGreen();
+		beach.solveGold();
+
+		beach.explore();
 	}
 
 } // this } is the end of class Picture, put all new methods before this
