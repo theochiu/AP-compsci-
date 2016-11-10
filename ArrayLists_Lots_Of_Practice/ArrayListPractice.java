@@ -42,6 +42,8 @@ public class ArrayListPractice extends ConsoleProgram
 
 		println("*** #5 ***");
 
+		// next line is for me to check comment out later - able
+		//printArrayList(list);
 		printArray(reverseArrayList(list));
 
 		println("*** #6 ***");
@@ -142,7 +144,14 @@ public class ArrayListPractice extends ConsoleProgram
 	{
 		
 		boolean[] result = new boolean[a.size()];
-		for ()
+		for (int num : a){
+			if (num%2==0)
+				result[a.indexOf(num)] = true;
+			else 
+				result[a.indexOf(num)] = true;
+
+		}
+		return result;
 
 
 		//return null; // remove this when you write the method
@@ -152,13 +161,27 @@ public class ArrayListPractice extends ConsoleProgram
 	// if whatToFind isn't in the array, return -1
 	public int findInArrayList(ArrayList<Integer> a, int whatToFind)
 	{
-		return -999;  // remove this when you write the method
+		
+		for (int num : a){
+			if (num==whatToFind)
+				return a.indexOf(num);
+		}
+		return -1;
+
+		//return -999;  // remove this when you write the method
 	}
 
 	// #5 - returns a built-in array in reversed order
 	public int[] reverseArrayList(ArrayList<Integer> a)
 	{
-		return null; // remove this when you write the method
+		int[] result = new int[a.size()];
+		for (int i = a.size()-1; i>=0; i--){
+			result[a.size()-1-i] = a.get(i);
+		}
+		return result;
+
+
+		//return null; // remove this when you write the method
 	}
 
 	// #6 - randomly shuffle, rearranging the order of the items.  You can use Math.random.
@@ -166,13 +189,35 @@ public class ArrayListPractice extends ConsoleProgram
 	//      do not modify a itself!
 	public ArrayList<Integer> shuffle(ArrayList<Integer> a)
 	{
-		return null; // remove this when you write the method
+		ArrayList<Integer> result = new ArrayList<Integer>();
+
+	//	System.out.println("shuffle has been called");
+		for (int num : a){
+			result.set((int) (Math.random()*(a.size())) , num);
+			//result.add(5,num);
+		}
+		System.out.println("Hello Test!");
+
+		return result; 
+// dear KMo, I couldn't figure out shuffle 
+
+
+
+		//return null; // remove this when you write the method
 	}
 
 	// #7 - removes all elements larger than maxVal and returns a (probably smaller) array
 	public ArrayList<Integer> removeMoreThan(ArrayList<Integer> a, int maxVal)
 	{
-		return null; // remove this when you write the method
+		for (int num : a){
+			if (num>maxVal)
+				a.remove(a.indexOf(num));
+		}
+		return a;
+
+
+
+		//return null; // remove this when you write the method
 	}
 
 	// #8 - returns a built-in array twice as long, with double the elements 
