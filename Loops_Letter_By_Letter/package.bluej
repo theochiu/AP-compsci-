@@ -1,0 +1,24 @@
+#BlueJ package file
+package.editor.height=148
+package.editor.width=349
+package.editor.x=75
+package.editor.y=86
+package.numDependencies=0
+package.numTargets=1
+package.showExtends=true
+package.showUses=true
+target1.appletHeight=500
+target1.appletWidth=500
+target1.editor.height=700
+target1.editor.width=1116
+target1.editor.x=124
+target1.editor.y=64
+target1.height=50
+target1.name=GetLoopExamples
+target1.naviview.expanded=false
+target1.numberAppletParameters=0
+target1.showInterface=false
+target1.type=AppletTarget
+target1.width=140
+target1.x=70
+target1.y=10

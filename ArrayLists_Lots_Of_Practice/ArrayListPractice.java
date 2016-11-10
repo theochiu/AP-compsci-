@@ -162,11 +162,13 @@ public class ArrayListPractice extends ConsoleProgram
 	public int findInArrayList(ArrayList<Integer> a, int whatToFind)
 	{
 		
-		for (int num : a){
-			if (num==whatToFind)
-				return a.indexOf(num);
+		for (int i=0; i<a.size(); i++){
+			if (a.get(i)==whatToFind)
+				return i;
 		}
 		return -1;
+
+	   //return a.indexOf(whatToFind);
 
 		//return -999;  // remove this when you write the method
 	}
@@ -193,13 +195,17 @@ public class ArrayListPractice extends ConsoleProgram
 
 	//	System.out.println("shuffle has been called");
 		for (int num : a){
-			result.set((int) (Math.random()*(a.size())) , num);
+			int r = (int) (Math.random()*(a.size()));
+			while (r>result.size())
+				r = (int) (Math.random()*(a.size()));
+				System.out.println(r);
+			result.add(r , num);
+
 			//result.add(5,num);
 		}
 		System.out.println("Hello Test!");
 
 		return result; 
-// dear KMo, I couldn't figure out shuffle 
 
 
 
@@ -209,11 +215,7 @@ public class ArrayListPractice extends ConsoleProgram
 	// #7 - removes all elements larger than maxVal and returns a (probably smaller) array
 	public ArrayList<Integer> removeMoreThan(ArrayList<Integer> a, int maxVal)
 	{
-		for (int num : a){
-			if (num>maxVal)
-				a.remove(a.indexOf(num));
-		}
-		return a;
+		for ()
 
 
 
