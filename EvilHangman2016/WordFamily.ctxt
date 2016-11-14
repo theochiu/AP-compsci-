@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=pattern
+comment0.target=WordFamily(java.lang.String)
+comment1.params=
+comment1.target=java.lang.String\ getPattern()
+comment2.params=
+comment2.target=java.lang.String\ getRandomWordFromGroup()
+comment3.params=
+comment3.target=java.util.ArrayList\ getAllWords()
+comment4.params=word
+comment4.target=void\ addWordToFamily(java.lang.String)
+comment5.params=
+comment5.target=int\ getNumWordsInFamily()
+numComments=6
