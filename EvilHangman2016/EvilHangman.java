@@ -26,22 +26,22 @@ public class EvilHangman extends Hangman
 
 	public String getPhraseSoFar()
 	{
-		// finish this in task #2
+		return possibleAnswerFamily.getPatter();	
 	}
 	
 	public String getActualAnswer()
 	{
-		// finish this in task #2
+		return possibleAnswerFamily.getRandomWordFromFamily();
 	}
 	
 	public String getLettersGuessed()
 	{
-		// finish this in task #2
+		return lettersGuessed;
 	}
 	
 	public int getGuessesLeft()
 	{
-		// finish this in task #2
+		return guessesLeft;
 	}
 	
 	private String getPatternFromWord(String word)
