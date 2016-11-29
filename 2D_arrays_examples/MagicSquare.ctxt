@@ -1,4 +1,10 @@
 #BlueJ class context
 comment0.params=
 comment0.target=void\ run()
-numComments=1
+comment1.params=square
+comment1.target=void\ printSquare(int[][])
+comment2.params=size
+comment2.target=int[][]\ getRandomSquare(int)
+comment3.params=square
+comment3.target=boolean\ isMagicSquare(int[][])
+numComments=4

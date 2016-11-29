@@ -46,7 +46,7 @@ public class EvilHangman extends Hangman
 	
 	private String getPatternFromWord(String word)
 	{
-		// finish this in task #3
+		
 	}
 	
 	private int findFamilyWithPattern(ArrayList<WordFamily> families, String pattern)
