@@ -13,7 +13,7 @@ public class Site
 		int i = 0;
 		for (int r=0; r<quadrants.length; r++){
 			for (int c=0; c<quadrants[0].length; c++){
-				if (i<people.size){
+				if (i<people.size()){
 					quadrants[r][c] = people.get(i);
 					i++;
 				}
@@ -26,7 +26,7 @@ public class Site
 		int counter = 0;
 		for (int r=0; r<quadrants.length; r++){
 			for(int c=0; c<quadrants[0].length;c++){
-				if (quadrants[r][c]).getAffiliation().equals(affiliation){
+				if ((quadrants[r][c]!=null)&&((quadrants[r][c]).getAffiliation().equals(affiliation))){
 					counter++;
 					quadrants[r][c] = null;
 				}
