@@ -85,13 +85,21 @@ public class EvilHangman extends Hangman
 
 		int champ = 0;
 
+		for (WordFamily fam : possibleFamilies){
+			if (fam.getNumWordsInFamily()>champ){
+				champ = fam.getNumWordsInFamily();
+				possibleAnswerFamily = fam; 
+			}
+		}
+
+	/*
 		for (int i=0; i<possibleFamilies.size(); i++){
 			if (possibleFamilies.get(i).getNumWordsInFamily()>champ){
 				champ = possibleFamilies.get(i).getNumWordsInFamily();
 				possibleAnswerFamily = possibleFamilies.get(i);
 			}
 		}
-
+	*/
 		guessesLeft--;
 		return (possibleAnswerFamily.getPattern().indexOf(guess)!=-1);
 		
