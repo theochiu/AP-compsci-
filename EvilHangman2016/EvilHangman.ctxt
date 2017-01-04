@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.params=
+comment0.target=EvilHangman()
+comment1.params=
+comment1.target=java.lang.String\ getPhraseSoFar()
+comment2.params=
+comment2.target=java.lang.String\ getActualAnswer()
+comment3.params=
+comment3.target=java.lang.String\ getLettersGuessed()
+comment4.params=
+comment4.target=int\ getGuessesLeft()
+comment5.params=word
+comment5.target=java.lang.String\ getPatternFromWord(java.lang.String)
+comment6.params=families\ pattern
+comment6.target=int\ findFamilyWithPattern(java.util.ArrayList,\ java.lang.String)
+comment7.params=guess
+comment7.target=boolean\ makeGuess(java.lang.String)
+numComments=8
