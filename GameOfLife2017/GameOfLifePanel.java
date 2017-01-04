@@ -81,6 +81,22 @@ public class GameOfLifePanel extends JPanel
 	// * dead cells come to life when they have exact three alive neighbors
 	public void playOneTurn()
 	{         
+
+		boolean[][] nextGeneration = new boolean[NUM_ROWS][NUM_COLS];
+		for (int r=0; r<gameGrid.length; r++){
+			for (int c=0; c< gameGrid[0].length; c++){
+				int n = numNeighbors(r,c);
+				if (gameGrid[r][c] && n==2 || n==3)
+					nextGeneration[r][c] = true;
+				else if (!gameGrid[r][c] && n==3)
+					nextGeneration[r][c] = true;
+				else
+					nextGeneration[r][c] = false;
+			}
+		}
+
+		gameGrid = nextGeneration;
+
 		// leave the line below as the last line
 		repaint();
 	}
