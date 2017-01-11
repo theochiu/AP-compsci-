@@ -26,7 +26,7 @@ public class ConnectFourGame
 	// returns -1 if the column col is completely full and no checker can be dropped
 	public int dropChecker(int col)
 	{
-		for (int r = board.length-1; r>=0, r--){
+		for (int r = board.length-1; r>=0; r--){
 			if (board[r][col]==0){
 				board[r][col] = currentTurnNumber;
 				if (currentTurnNumber==1){
