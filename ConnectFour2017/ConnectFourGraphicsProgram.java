@@ -35,6 +35,16 @@ public class ConnectFourGraphicsProgram extends GraphicsProgram
 		gameIsBeingPlayed = false;
 		
 		// add code here in version 0.4
+
+		String team;
+		if (currentDrawingColor==Color.RED)
+			team = "BLACK";
+		else
+			team = "RED";
+		GLabel winner = new GLabel(team + " Wins!!!", WIDTH/2, HEIGHT/2);
+		winner.setFont("*-bold-42");
+		winner.setColor(Color.GREEN);
+		add(winner);
 	}
 
 	public void mouseClicked(MouseEvent e) 
