@@ -56,7 +56,7 @@ public class ConnectFourGraphicsProgram extends GraphicsProgram
 		int row = game.dropChecker(col);
 		if (row!=-1){
 			drawChecker(col, row);
-			if (currentDrawingColor==Color.RED)
+			if (game.getCurrentTurnNumber()==2)
 				currentDrawingColor = Color.BLACK;
 			else
 				currentDrawingColor = Color.RED;

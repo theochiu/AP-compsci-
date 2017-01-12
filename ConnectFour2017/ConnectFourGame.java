@@ -16,8 +16,39 @@ public class ConnectFourGame
 	// returns 0, 1, or 2
 	public int getWinner()
 	{      
+		for (int r = 0; r<board.length; r++){
+			for (int c=0; c<board[r].length; c++){
+				try{
+					if (board[r][c]!=0 && board[r][c]==board[r][c-1] && board[r][c]==board[r][c-2]
+								&& board[r][c]==board[r][c-3]){
+						System.out.println("="+board[r][c]);
+						return board[r][c];
+					}
+				
+					else if(board[r][c]!=0 && board[r][c]==board[r-1][c] && board[r][c]== board[r-2][c]
+								&& board[r][c]==board[r-3][c]){
+						System.out.println("="+board[r][c]);
+						return board[r][c];
+					}
+
+					else if (board[r][c]!=0 && board[r][c] == board[r+1][c+1] && board[r][c]== board[r+2][c+2]
+								&& board[r][c]==board[r+3][c+3]){
+						System.out.println("="+board[r][c]);
+						return board[r][c];
+					}
+
+					else if (board[r][c]!=0 && board[r-1][c+1] ==board[r][c] && board[r-2][c+2]==board[r][c]
+								&& board[r-3][c+3]==board[r][c]){
+						System.out.println("="+board[r][c]);
+						return board[r][c];
+					}
+				}
+				catch(ArrayIndexOutOfBoundsException e){
+					System.err.println(e.getMessage());
+				}
+			}
+		}
 		// complete this in version 1.0
-		
 		return 0; // feel free to eventually change this line.  it is just here so the rest will compile
 	}
 
@@ -30,15 +61,19 @@ public class ConnectFourGame
 			if (board[r][col]==0){
 				board[r][col] = currentTurnNumber;
 				if (currentTurnNumber==1){
-					currentTurnNumber = -1;
+					currentTurnNumber = 2;
 				}
 				else 
-					currentTurnNumber=2;
+					currentTurnNumber=1;
 
 				return r;
 			}
 		}
 		return -1;
+	}
+
+	public int getCurrentTurnNumber(){
+		return currentTurnNumber;
 	}
 }
 

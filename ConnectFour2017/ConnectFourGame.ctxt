@@ -5,4 +5,6 @@ comment1.params=
 comment1.target=int\ getWinner()
 comment2.params=col
 comment2.target=int\ dropChecker(int)
-numComments=3
+comment3.params=
+comment3.target=int\ getCurrentTurnNumber()
+numComments=4
