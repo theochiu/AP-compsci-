@@ -1,92 +1,234 @@
+import java.awt.*;
+import java.awt.font.*;
+import java.awt.geom.*;
+import java.awt.image.BufferedImage;
+import java.text.*;
+import java.util.*;
+import java.util.List; // resolves problem with java.awt.List and java.util.List
+
 /**
- * This class contains class (static) methods
- * that will help you test the Picture class 
- * methods.  Uncomment the methods and the code
- * in the main to test.
+ * A class that represents a picture.  This class inherits from 
+ * SimplePicture and allows the student to add functionality to
+ * the Picture class.  
  * 
- * @author Barbara Ericson 
+ * @author Barbara Ericson ericson@cc.gatech.edu
  */
-public class PictureTester
+public class Picture extends SimplePicture 
 {
-	/** Method to test zeroBlue */
-	public static void testZeroBlue()
+	///////////////////// constructors //////////////////////////////////
+
+	/**
+	 * Constructor that takes no arguments 
+	 */
+	public Picture ()
 	{
-		Picture beach = new Picture("images/" + "beach.jpg");
-		beach.explore();
-		beach.zeroBlue();
-		beach.explore();
+		/* not needed but use it to show students the implicit call to super()
+		 * child constructors always call a parent constructor 
+		 */
+		super();  
+	}
+
+	/**
+	 * Constructor that takes a file name and creates the picture 
+	 * @param fileName the name of the file to create the picture from
+	 */
+	public Picture(String fileName)
+	{
+		// let the parent class handle this fileName
+		super(fileName);
+	}
+
+	/**
+	 * Constructor that takes the width and height
+	 * @param height the height of the desired picture
+	 * @param width the width of the desired picture
+	 */
+	public Picture(int height, int width)
+	{
+		// let the parent class handle this width and height
+		super(width,height);
+	}
+
+	/**
+	 * Constructor that takes a picture and creates a 
+	 * copy of that picture
+	 * @param copyPicture the picture to copy
+	 */
+	public Picture(Picture copyPicture)
+	{
+		// let the parent class do the copy
+		super(copyPicture);
+	}
+
+	/**
+	 * Constructor that takes a buffered image
+	 * @param image the buffered image to use
+	 */
+	public Picture(BufferedImage image)
+	{
+		super(image);
+	}
+
+	////////////////////// methods ///////////////////////////////////////
+
+	/**
+	 * Method to return a string with information about this picture.
+	 * @return a string with information about the picture such as fileName,
+	 * height and width.
+	 */
+	public String toString()
+	{
+		String output = "Picture, filename " + getFileName() + 
+			" height " + getHeight() 
+			+ " width " + getWidth();
+		return output;
+
+	}
+
+	/** Method to set the blue to 0 */
+	public void zeroBlue()
+	{
+		Pixel[] pixels = getPixels();
+
+		for (Pixel pixel : pixels)
+		{
+			pixel.setBlue(0);
+		}
+
+	}
+
+	public void allRed()
+	{
+		Pixel[] pixels = getPixels();
+
+		for (Pixel pixel : pixels)
+		{
+			pixel.setRed(255);
+		}
+
+	}
+
+	public void swapBlueGreen()
+	{
+		Pixel[] pixels = getPixels();
+
+		for (Pixel pixel : pixels)
+		{
+			int oldGreen = pixel.getGreen();
+			pixel.setGreen(pixel.getBlue());
+			pixel.setBlue(oldGreen);
+		}
+
+	}
+
+	public void negative()
+	{
+		Pixel[] pixels = getPixels();
+
+		for (Pixel pixel : pixels)
+		{
+			pixel.setRed(255-pixel.getRed());
+			pixel.setGreen(255-pixel.getGreen());
+			pixel.setBlue(255-pixel.getBlue());
+		}
+
+	}
+
+	public void grayScale()
+	{
+		Pixel[] pixels = getPixels();
+
+		for (Pixel pixel : pixels)
+		{
+			int avg = (pixel.getRed()+pixel.getGreen()+pixel.getBlue())/3;
+			pixel.setRed(avg);
+			pixel.setGreen(avg);
+			pixel.setBlue(avg);
+		}
+
+	}
+
+	public void posterize()
+	{
+		Pixel[] pixels = getPixels();
+
+		for (Pixel pixel : pixels)
+		{
+			pixel.setRed(pixel.getRed()/64*64);
+			pixel.setGreen(pixel.getGreen()/64*64);
+			pixel.setBlue(pixel.getBlue()/64*64);
+		}
+
+	}
+
+	public void fixGold()
+	{
+		Pixel[] pixels = getPixels();
+
+		for (Pixel pixel : pixels){
+			pixel.setGreen(0);
+			pixel.setBlue(0);
+			pixel.setRed(pixel.getRed()*10);
+		}
+
+	}
+
+	public void copy(Picture fromPicture, int row, int col)
+	{
+		Pixel[][] grid = getPixels2D();
+		Pixel[][] fromGrid = fromPicture.getPixels2D();
+		for (int r = 0; r<fromGrid.length; r++){
+			for (int c=0; c<fromGrid[0].length; c++){
+				if (row+r < grid.length && col+c<grid[0].length){
+					Color color = fromGrid[r][c].getColor();
+					grid[row+r][col+c].setColor(color);
+				}
+			}
+		}
+	}
+
+	public void createCollage(){
+		int ringCounter=0;
+		Pixel[][] grid = getPixels2D();
+		Picture flower = new Picture("images/" + "flower1.jpg");
+		flower = flower.scale(0.4, 0.4);
+		Pixel[][] flowerGrid = flower.getPixels2D();
+		int flowerRows = flowerGrid.length;
+		int flowerCols = flowerGrid[0].length;
+		while (ringCounter*flowerRows < grid.length/2 &&
+		ringCounter*flowerCols < grid[0].length/2){
+			int offsetRow = ringCounter*flowerRows;
+			int offsetCol = ringCounter*flowerCols;
+			for (int r=offsetRow; r<grid.length-offsetRow; r+=flowerRows){
+				copy(flower, r, offsetCol);
+				copy(flower, r, grid[0].length-flowerCols-offsetCol);
+			}
+			for (int c=flowerCols+offsetCol; c<grid[0].length-flowerCols-offsetCol; c+=flowerCols){
+				copy(flower, offsetRow, c);
+				copy(flower, grid.length-flowerRows-offsetRow, c);
+			}
+			ringCounter++;
+			if (ringCounter%2==0)
+			   flower = new Picture("images/" + "flower1.jpg");
+			else
+			   flower = new Picture("images/" + "flower2.jpg");
+			flower = flower.scale(0.4, 0.4);
+			flowerGrid = flower.getPixels2D();
+		}
 	}
 	
-	/** Method to test explore */
-	public static void testExplore()
-	{
-		Picture leah = new Picture("images/" + "beach.jpg");
-		leah.explore();
+	public void edgeDetection(int threshold){
+		Pixel[][] grid = getPixels2D();
+		for (int r=0; r<grid.length; r++){
+			for (int c=0; c<grid[0].length-1; c++){
+				if (grid[r][c].colorDistance(grid[r][c+1].getColor())>threshold)
+					grid[r][c].setColor(Color.black);
+				else
+					grid[r][c].setColor(Color.white);
+			}
+		}
 	}
 	
-	/** Method to test mirrorVertical */
-	public static void testMirrorVertical()
-	{
-		Picture caterpillar = new Picture("images/" + "catepillar.jpg");
-		caterpillar.explore();
-		caterpillar.mirrorVertical();
-		caterpillar.explore();
-	}
 	
-	/** Method to test mirrorTemple */
-	public static void testMirrorTemple()
-	{
-		Picture temple = new Picture("images/" + "temple.jpg");
-		temple.explore();
-		temple.mirrorTemple();
-		temple.explore();
-	}
-	
-	/** Method to test the collage method */
-	public static void testCollage()
-	{
-		Picture canvas = new Picture("images/" + "640x480.jpg");
-		//canvas.createCollage();
-		canvas.explore();
-	}
-	
-	/** Method to test edgeDetection */
-	public static void testEdgeDetection()
-	{
-		Picture swan = new Picture("images/" + "swan.jpg");
-		//swan.edgeDetection(10);
-		swan.explore();
-	}
-	
-	/** Main method for testing.  Every class can have a main
-		* method in Java */
-	public static void main(String[] args)
-	{
-		// uncomment a call here to run a test
-		// and comment out the ones you don't want
-		// to run
-		testExplore();
-		//testZeroBlue();
-		//testKeepOnlyBlue();
-		//testKeepOnlyRed();
-		//testKeepOnlyGreen();
-		//testNegate();
-		//testGrayscale();
-		//testFixUnderwater();
-		//testMirrorVertical();
-		//testMirrorTemple();
-		//testMirrorArms();
-		//testMirrorGull();
-		//testMirrorDiagonal();
-		//testCollage();
-		//testCopy();
-		//testEdgeDetection();
-		//testEdgeDetection2();
-		//testChromakey();
-		//testEncodeAndDecode();
-		//testGetCountRedOverValue(250);
-		//testSetRedToHalfValueInTopHalf();
-		//testClearBlueOverValue(200);
-		//testGetAverageForColumn(0);
-	}
-}
+
+} // this } is the end of class Picture, put all new methods before this

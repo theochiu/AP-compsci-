@@ -25,7 +25,7 @@ public class Picture extends SimplePicture
 		/* not needed but use it to show students the implicit call to super()
 		 * child constructors always call a parent constructor 
 		 */
-		super();  
+		super();
 	}
 
 	/**
@@ -95,7 +95,8 @@ public class Picture extends SimplePicture
 			pixel.setBlue(0);
 		}
 
-	}
+	} 
+
 	
 	
 	public void allRed()
@@ -192,6 +193,49 @@ public class Picture extends SimplePicture
 				Color color = grid[r][c].getColor();
 				grid[r][grid[0].length-1-c].setColor(color);
 			}
+		}
+	}
+
+	public void copy(Picture fromPicture, int row, int col){
+		Pixel[][] grid = getPixels2D();
+		Pixel[][] fromGrid = fromPicture.getPixels2D();
+		for (int r=0; r<fromGrid.length;r++){
+			for (int c=0; c<fromGrid[r].length; c++){
+				if (row+r <grid.length && col+c<grid[0].length){
+					Color color = fromGrid[r][c].getColor();
+					grid[row+r][col+c].setColor(color);
+				}
+			}
+		}
+	}
+
+	public void createCollage(){
+		int ringCounter=0;
+		Pixel[][] grid = getPixels2D();
+		Picture flower = new Picture("images/" + "flower1.jpg");
+		flower = flower.scale(0.4,0.4);
+		Pixel[][] flowerGrid = flower.getPixels2D();
+		int flowerRows = flowerGrid.length;
+		int flowerCols = flowerGrid[0].length;
+		while (ringCounter*flowerRows<grid.length/2 && ringCounter*flowerCols<grid[0].length/2){
+			int offsetRow = ringCounter*flowerRows;
+			int offsetCol = ringCounter*flowerCols;
+			for (int r=offsetRow; r<grid.length-offsetRow; r+=flowerRows){
+				copy(flower, r, 0);
+				copy(flower,r,grid[0].length-flowerCols);
+			}
+			for (int c=offsetCol+flowerCols; c<grid[0].length - offsetCol- flowerCols; c+=flowerCols){
+				copy(flower,offsetRow,c);
+				copy(flower,grid.length-flowerRows-offsetCols;,c);
+			}
+			ringCounter++;
+			if (ringCounter%2==0)
+				flower = new Picture("images/flower1.jpg");
+			else 
+				flower = new Picture("images/flower1.jpg");
+			flower = flower.scale(0.4,0.4);
+			flowerGrid = flower.getPixels2D();
+
 		}
 	}
 	
