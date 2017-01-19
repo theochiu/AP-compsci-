@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.params=sideLength
+comment0.target=SlidingPuzzle(int)
+comment1.params=
+comment1.target=void\ initialize()
+comment1.text=The\ given\ code\ creates\ and\ initializes\ an\ ArrayList\ \r\n\t\ containing\ the\ numbers\ 0\ to\ (side*side-1).\ \ This\r\n\t\ method\ fill\ in\ the\ private\ instance\ variable\ values\ with\ \r\n\t\ random\ values\ from\ this\ ArrayList\ temp,\ which\ will\ initialize\r\n\t\ the\ puzzle\ to\ a\ random\ starting\ state.\r\n
+comment2.params=
+comment2.target=boolean\ isDone()
+comment2.text=returns\ true\ if\ the\ numbers\ are\ in\ "sliding\ puzzle"\r\n\t\ order,\ false\ otherwise;\ note\ that\ the\ blank\ (represented\r\n\t\ by\ a\ 0)\ can\ be\ anywhere\r\n
+comment3.params=row\ col
+comment3.target=void\ slide(int,\ int)
+comment3.text=The\ player\ has\ clicked\ on\ a\ number\ at\ (row,\ col).\ \ This\ method\r\n\t\ should\ "slide"\ that\ number\ to\ the\ neighboring\ blank\ (represented\r\n\t\ by\ the\ number\ 0),\ if\ such\ a\ neighboring\ blank\ exists.\ \ If\ there\r\n\t\ is\ no\ neighboring\ blank,\ this\ method\ should\ do\ nothing.\ \ If\ you\r\n\t\ slide\ a\ tile,\ you\ should\ change\ the\ private\ instance\ variable\r\n\t\ values\ to\ reflect\ this\ slide.\ \ Note\:\ you'll\ need\ to\ do\ lots\ of\ \r\n\t\ "bounds\ checking"\ to\ make\ sure\ you\ avoid\ an\ \r\n\t\ ArrayIndexOutOfBoundsException\!\r\n
+comment4.params=row\ col
+comment4.target=int\ getValueAt(int,\ int)
+numComments=5

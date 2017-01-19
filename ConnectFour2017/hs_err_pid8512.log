@@ -1,0 +1,189 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x000000000265ec4f, pid=8512, tid=11856
+#
+# JRE version: 6.0_22-b04
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (17.1-b03 mixed mode windows-amd64 )
+# Problematic frame:
+# J  ConnectFourGame.getWinner()I
+#
+# If you would like to submit a bug report, please visit:
+#   http://java.sun.com/webapps/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x000000006b4ea000):  JavaThread "main" [_thread_in_Java, id=11856, stack(0x000000006c0b0000,0x000000006c1b0000)]
+
+siginfo: ExceptionCode=0xc0000005, reading address 0x000000084a04b050
+
+Registers:
+EAX=0x00000000060b9da8, EBX=0x000000004a04b098, ECX=0x00000000fffffffd, EDX=0x000000004a04b030
+ESP=0x000000006c1aeb80, EBP=0x000000006c1aec40, ESI=0x0000000005b41070, EDI=0x00000000025e5a29
+EIP=0x000000000265ec4f, EFLAGS=0x0000000000010282
+
+Top of Stack: (sp=0x000000006c1aeb80)
+0x000000006c1aeb80:   0000000000000006 0000000000000000
+0x000000006c1aeb90:   0000000000000006 000000004a04b030
+0x000000006c1aeba0:   000000006c1aeaf8 000000006c1aebb0
+0x000000006c1aebb0:   000000006dee7f30 000000016a54b210
+0x000000006c1aebc0:   0000000000000003 000000004a04b030
+0x000000006c1aebd0:   00000000025f5380 0000000005b41070
+0x000000006c1aebe0:   000000006c1aec40 00000000025e5a6e
+0x000000006c1aebf0:   00000000025e5a6e 000000004a04b030
+0x000000006c1aec00:   000000006c1aec00 0000000005b6e8c3
+0x000000006c1aec10:   000000006c1aec60 0000000005bfb1d0
+0x000000006c1aec20:   00000000060fa0d0 0000000005b6e960
+0x000000006c1aec30:   000000006c1aebf8 000000006c1aec60
+0x000000006c1aec40:   000000006c1aeca8 00000000025e5b82
+0x000000006c1aec50:   0000000000000000 0000000000000000
+0x000000006c1aec60:   0000000049d07fa0 000000006c1aec68
+0x000000006c1aec70:   0000000005b7efb1 000000006c1aecb8 
+
+Instructions: (pc=0x000000000265ec4f)
+0x000000000265ec3f:   d0 41 83 c2 03 44 89 54 24 40 41 8b c8 83 c1 fd
+0x000000000265ec4f:   4d 8b 54 ce 18 4c 89 54 24 20 45 8b d0 41 83 c2 
+
+
+Stack: [0x000000006c0b0000,0x000000006c1b0000],  sp=0x000000006c1aeb80,  free space=3fa0000000000000000k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+J  ConnectFourGame.getWinner()I
+j  acm.program.Program.runHook()V+1
+j  acm.program.Program.startRun()V+59
+j  acm.program.Program.start([Ljava/lang/String;)V+169
+j  acm.program.Program.start()V+68
+j  __SHELL31.run()V+17
+v  ~StubRoutines::call_stub
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x000000006a5ce000 JavaThread "AWT-EventQueue-0" [_thread_in_Java, id=9176, stack(0x000000006c2b0000,0x000000006c3b0000)]
+  0x000000006a5c9800 JavaThread "AWT-Shutdown" [_thread_blocked, id=11320, stack(0x000000006c1b0000,0x000000006c2b0000)]
+=>0x000000006b4ea000 JavaThread "main" [_thread_in_Java, id=11856, stack(0x000000006c0b0000,0x000000006c1b0000)]
+  0x000000006a5fb000 JavaThread "TimerQueue" daemon [_thread_blocked, id=13148, stack(0x000000006b8b0000,0x000000006b9b0000)]
+  0x0000000000b0c000 JavaThread "DestroyJavaVM" [_thread_blocked, id=3608, stack(0x00000000023e0000,0x00000000024e0000)]
+  0x000000006a589000 JavaThread "BlueJ worker thread" [_thread_blocked, id=11928, stack(0x000000006b3b0000,0x000000006b4b0000)]
+  0x000000006a551800 JavaThread "AWT-Windows" daemon [_thread_in_native, id=12792, stack(0x000000006b0f0000,0x000000006b1f0000)]
+  0x000000006a549000 JavaThread "Java2D Disposer" daemon [_thread_blocked, id=5824, stack(0x000000006aea0000,0x000000006afa0000)]
+  0x000000006a488800 JavaThread "Low Memory Detector" daemon [_thread_blocked, id=10276, stack(0x000000006ab60000,0x000000006ac60000)]
+  0x000000006a479800 JavaThread "CompilerThread1" daemon [_thread_blocked, id=11840, stack(0x000000006aa60000,0x000000006ab60000)]
+  0x000000006a476800 JavaThread "CompilerThread0" daemon [_thread_blocked, id=10204, stack(0x000000006a960000,0x000000006aa60000)]
+  0x000000006a45d800 JavaThread "JDWP Command Reader" daemon [_thread_in_native, id=5512, stack(0x000000006a860000,0x000000006a960000)]
+  0x000000006a45a800 JavaThread "JDWP Event Helper Thread" daemon [_thread_blocked, id=6964, stack(0x000000006a750000,0x000000006a850000)]
+  0x000000006a457000 JavaThread "JDWP Transport Listener: dt_shmem" daemon [_thread_blocked, id=2132, stack(0x000000006a650000,0x000000006a750000)]
+  0x00000000025d5800 JavaThread "Attach Listener" daemon [_thread_blocked, id=9740, stack(0x000000006a350000,0x000000006a450000)]
+  0x00000000025d2000 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=1268, stack(0x000000006a250000,0x000000006a350000)]
+  0x00000000025ba000 JavaThread "Finalizer" daemon [_thread_blocked, id=7824, stack(0x000000006a150000,0x000000006a250000)]
+  0x00000000025b6800 JavaThread "Reference Handler" daemon [_thread_blocked, id=1668, stack(0x000000006a050000,0x000000006a150000)]
+
+Other Threads:
+  0x00000000025b1800 VMThread [stack: 0x0000000069f50000,0x000000006a050000] [id=876]
+  0x000000006a489800 WatcherThread [stack: 0x000000006ac60000,0x000000006ad60000] [id=1464]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap
+ PSYoungGen      total 28224K, used 10864K [0x0000000049950000, 0x000000004b8c0000, 0x00000000690a0000)
+  eden space 24256K, 44% used [0x0000000049950000,0x000000004a3ec200,0x000000004b100000)
+  from space 3968K, 0% used [0x000000004b4e0000,0x000000004b4e0000,0x000000004b8c0000)
+  to   space 3968K, 0% used [0x000000004b100000,0x000000004b100000,0x000000004b4e0000)
+ PSOldGen        total 64448K, used 0K [0x000000000aaa0000, 0x000000000e990000, 0x0000000049950000)
+  object space 64448K, 0% used [0x000000000aaa0000,0x000000000aaa0000,0x000000000e990000)
+ PSPermGen       total 21248K, used 10640K [0x00000000056a0000, 0x0000000006b60000, 0x000000000aaa0000)
+  object space 21248K, 50% used [0x00000000056a0000,0x00000000061043f8,0x0000000006b60000)
+
+Dynamic libraries:
+0x0000000000400000 - 0x000000000042e000 	D:\Users\Theodore\coding_help\java\Java SE DK6 u22\jre\bin\java.exe
+0x00007ffce4c80000 - 0x00007ffce4e53000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007ffce2110000 - 0x00007ffce21bd000 	C:\WINDOWS\System32\KERNEL32.DLL
+0x00007ffce1350000 - 0x00007ffce1586000 	C:\WINDOWS\System32\KERNELBASE.dll
+0x00007ffce2e70000 - 0x00007ffce2f1a000 	C:\WINDOWS\System32\ADVAPI32.dll
+0x00007ffce2990000 - 0x00007ffce2a38000 	C:\WINDOWS\System32\msvcrt.dll
+0x00007ffce4c20000 - 0x00007ffce4c7c000 	C:\WINDOWS\System32\sechost.dll
+0x00007ffce4640000 - 0x00007ffce4771000 	C:\WINDOWS\System32\RPCRT4.dll
+0x000000006d890000 - 0x000000006df61000 	D:\Users\Theodore\coding_help\java\Java SE DK6 u22\jre\bin\server\jvm.dll
+0x00007ffce21c0000 - 0x00007ffce230c000 	C:\WINDOWS\System32\USER32.dll
+0x00007ffce1640000 - 0x00007ffce165e000 	C:\WINDOWS\System32\win32u.dll
+0x00007ffce47e0000 - 0x00007ffce4808000 	C:\WINDOWS\System32\GDI32.dll
+0x00007ffce1ee0000 - 0x00007ffce206d000 	C:\WINDOWS\System32\gdi32full.dll
+0x00007ffcdef90000 - 0x00007ffcdefb5000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007ffcdef30000 - 0x00007ffcdef5c000 	C:\WINDOWS\SYSTEM32\winmmbase.dll
+0x00007ffce12a0000 - 0x00007ffce12e5000 	C:\WINDOWS\System32\cfgmgr32.dll
+0x00007ffce4a30000 - 0x00007ffce4a5f000 	C:\WINDOWS\System32\IMM32.DLL
+0x000000006d800000 - 0x000000006d80e000 	D:\Users\Theodore\coding_help\java\Java SE DK6 u22\jre\bin\verify.dll
+0x000000006d450000 - 0x000000006d477000 	D:\Users\Theodore\coding_help\java\Java SE DK6 u22\jre\bin\java.dll
+0x000000006d3b0000 - 0x000000006d3ba000 	D:\Users\Theodore\coding_help\java\Java SE DK6 u22\jre\bin\hpi.dll
+0x00007ffce2a40000 - 0x00007ffce2a48000 	C:\WINDOWS\System32\PSAPI.DLL
+0x000000006d4c0000 - 0x000000006d4f4000 	D:\Users\Theodore\coding_help\java\Java SE DK6 u22\jre\bin\jdwp.dll
+0x000000006d6d0000 - 0x000000006d6d8000 	D:\Users\Theodore\coding_help\java\Java SE DK6 u22\jre\bin\npt.dll
+0x000000006d850000 - 0x000000006d862000 	D:\Users\Theodore\coding_help\java\Java SE DK6 u22\jre\bin\zip.dll
+0x000000006d300000 - 0x000000006d30a000 	D:\Users\Theodore\coding_help\java\Java SE DK6 u22\jre\bin\dt_shmem.dll
+0x000000006d0a0000 - 0x000000006d263000 	D:\Users\Theodore\coding_help\java\Java SE DK6 u22\jre\bin\awt.dll
+0x00007ffce2320000 - 0x00007ffce2455000 	C:\WINDOWS\System32\ole32.dll
+0x00007ffcc8b60000 - 0x00007ffcc8beb000 	C:\WINDOWS\SYSTEM32\WINSPOOL.DRV
+0x00007ffce2ab0000 - 0x00007ffce2db2000 	C:\WINDOWS\System32\combase.dll
+0x00007ffce1dd0000 - 0x00007ffce1ee0000 	C:\WINDOWS\System32\ucrtbase.dll
+0x00007ffce1050000 - 0x00007ffce10b9000 	C:\WINDOWS\System32\bcryptPrimitives.dll
+0x00007ffce0ee0000 - 0x00007ffce0f0c000 	C:\WINDOWS\SYSTEM32\bcrypt.dll
+0x00007ffce30f0000 - 0x00007ffce457b000 	C:\WINDOWS\System32\SHELL32.dll
+0x00007ffce1660000 - 0x00007ffce1dca000 	C:\WINDOWS\System32\windows.storage.dll
+0x00007ffce2a50000 - 0x00007ffce2aa8000 	C:\WINDOWS\System32\shlwapi.dll
+0x00007ffce1030000 - 0x00007ffce1041000 	C:\WINDOWS\System32\kernel.appcore.dll
+0x00007ffce4a60000 - 0x00007ffce4b12000 	C:\WINDOWS\System32\shcore.dll
+0x00007ffce0fc0000 - 0x00007ffce100e000 	C:\WINDOWS\System32\powrprof.dll
+0x00007ffce0fa0000 - 0x00007ffce0fb5000 	C:\WINDOWS\System32\profapi.dll
+0x00007ffcd5d60000 - 0x00007ffcd5fe5000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.14986.1000_none_8b018ec7bd35a85b\COMCTL32.dll
+0x00007ffcdf530000 - 0x00007ffcdf5b1000 	C:\WINDOWS\SYSTEM32\apphelp.dll
+0x00007ffcddfe0000 - 0x00007ffcde007000 	C:\WINDOWS\SYSTEM32\DWMAPI.DLL
+0x00007ffcdf6d0000 - 0x00007ffcdf76d000 	C:\WINDOWS\system32\uxtheme.dll
+0x00007ffce48a0000 - 0x00007ffce4a25000 	C:\WINDOWS\System32\MSCTF.dll
+0x00007ffce4580000 - 0x00007ffce463e000 	C:\WINDOWS\System32\OLEAUT32.dll
+0x00007ffce2070000 - 0x00007ffce2110000 	C:\WINDOWS\System32\msvcp_win.dll
+0x000000006d340000 - 0x000000006d3a6000 	D:\Users\Theodore\coding_help\java\Java SE DK6 u22\jre\bin\fontmanager.dll
+0x000000006d6a0000 - 0x000000006d6b7000 	D:\Users\Theodore\coding_help\java\Java SE DK6 u22\jre\bin\net.dll
+0x00007ffce2920000 - 0x00007ffce298f000 	C:\WINDOWS\System32\WS2_32.dll
+0x00007ffce0850000 - 0x00007ffce08ae000 	C:\WINDOWS\system32\mswsock.dll
+0x000000006d6c0000 - 0x000000006d6cb000 	D:\Users\Theodore\coding_help\java\Java SE DK6 u22\jre\bin\nio.dll
+0x000000006d5e0000 - 0x000000006d5ea000 	D:\Users\Theodore\coding_help\java\Java SE DK6 u22\jre\bin\management.dll
+0x00007ffcd7260000 - 0x00007ffcd7277000 	C:\WINDOWS\system32\napinsp.dll
+0x00007ffccdfe0000 - 0x00007ffccdffa000 	C:\WINDOWS\system32\pnrpnsp.dll
+0x00007ffcddc90000 - 0x00007ffcddcaa000 	C:\WINDOWS\system32\NLAapi.dll
+0x00007ffce05f0000 - 0x00007ffce0696000 	C:\WINDOWS\SYSTEM32\DNSAPI.dll
+0x00007ffce4890000 - 0x00007ffce4898000 	C:\WINDOWS\System32\NSI.dll
+0x00007ffce05b0000 - 0x00007ffce05e9000 	C:\WINDOWS\SYSTEM32\IPHLPAPI.DLL
+0x00007ffcddde0000 - 0x00007ffcdddee000 	C:\WINDOWS\System32\winrnr.dll
+0x000000006b2c0000 - 0x000000006b2e6000 	C:\Program Files\Bonjour\mdnsNSP.dll
+0x00007ffcd6390000 - 0x00007ffcd639a000 	C:\Windows\System32\rasadhlp.dll
+0x00007ffcd9e90000 - 0x00007ffcd9eff000 	C:\WINDOWS\System32\fwpuclnt.dll
+
+VM Arguments:
+jvm_args: -ea -Xdebug -Xnoagent -Xrunjdwp:transport=dt_shmem,address=bluej15,server=y,suspend=y 
+java_command: bluej.runtime.ExecServer
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+PATH=C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\Python27\;D:\Users\Theodore\coding_help\java\Java SE DK8\bin;C:\Users\Theodore\AppData\Local\Microsoft\WindowsApps;
+USERNAME=Theodore
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 58 Stepping 9, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows NT 6.2 Build 9200 
+
+CPU:total 4 (8 cores per cpu, 2 threads per core) family 6 model 58 stepping 9, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, ht
+
+Memory: 4k page, physical 6181144k(1907648k free), swap 8707664k(1681784k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (17.1-b03) for windows-amd64 JRE (1.6.0_22-b04), built on Sep 15 2010 00:45:56 by "java_re" with MS VC++ 8.0 (VS2005)
+
+time: Wed Jan 11 22:47:37 2017
+elapsed time: 5 seconds
+
