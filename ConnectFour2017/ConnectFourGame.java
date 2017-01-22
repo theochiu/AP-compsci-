@@ -31,7 +31,7 @@ public class ConnectFourGame
 						return board[r][c];
 					}
 
-					else if (board[r][c]!=0 && board[r][c] == board[r+1][c+1] && board[r][c]== board[r+2][c+2]
+					else if (board[r][c]!=0 && board[r+1][c+1]==board[r][c] && board[r][c]== board[r+2][c+2]
 								&& board[r][c]==board[r+3][c+3]){
 						System.out.println("="+board[r][c]);
 						return board[r][c];
