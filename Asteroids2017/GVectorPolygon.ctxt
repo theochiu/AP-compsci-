@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.params=width\ height
+comment0.target=GVectorPolygon(int,\ int)
+comment1.params=numPixels
+comment1.target=void\ increaseVelocity(double)
+comment2.params=
+comment2.target=void\ updatePosition()
+comment3.params=angle
+comment3.target=void\ rotate(double)
+comment4.params=
+comment4.target=double\ getTheta()
+comment5.params=
+comment5.target=double\ getVelocityX()
+comment6.params=
+comment6.target=double\ getVelocityY()
+comment7.params=
+comment7.target=acm.graphics.GRectangle\ getBoundingRectangle()
+numComments=8
