@@ -35,7 +35,7 @@ public class GVectorPolygon extends GPolygon
         move(vx,vy);
         if(getX()>maxX)
             setLocation(0,getY());
-        if (getX()<0)
+        else if (getX()<0)
             setLocation(maxX,getY());
         if (getY()>maxY)
             setLocation(getX(),0);

@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.params=
+comment0.target=MagicEightBall()
+comment1.params=stud
+comment1.target=void\ giveAdvice(Student)
+numComments=2
