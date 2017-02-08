@@ -16,6 +16,17 @@ public class Ship extends GVectorPolygon
 		setColor(Color.WHITE); 
 	}
 
+	public Bullet makeBullet() {
+
+		Bullet b = new Bullet((int)getBoundingRectangle().getWidth(), (int)getBoundingRectangle().getHeight());
+		b.rotate(getTheta());
+		b.setLocation(getX(), getY());
+		for (int i = 0; i < 15; ++i) {
+			b.increaseVelocity(3);
+		}
+		return b;
+	}
+
 	// you'll add a method here in version 0.5.1
 
 }

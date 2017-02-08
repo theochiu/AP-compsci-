@@ -14,7 +14,7 @@ public class AsteroidsGame extends GraphicsProgram
 	private GLabel notificationLabel, scoreLabel;
 	// uncomment out the lines below in version 0.4.1 and 0.5.2
 	private Ship ship;
-	// private ArrayList<Bullet> bullets;
+	private ArrayList<Bullet> bullets;
 	private int level;
 	private int ships;
 	private int score;
@@ -49,9 +49,14 @@ public class AsteroidsGame extends GraphicsProgram
 		ship = new Ship(getWidth(),getHeight());
 		ship.setLocation((getWidth() / 2),(getHeight() / 2));
 		add(ship);
+
+		addKeyListeners();
 		
 		asteroids = new ArrayList<Asteroid>();
 		makeAsteroids();
+
+		bullets = new ArrayList<Bullet>();
+
 		
 	}
 	
@@ -73,6 +78,11 @@ public class AsteroidsGame extends GraphicsProgram
 		while (true)
 		{
 			pause(10);
+			ship.updatePosition();
+			for (int j=0; j<bullets.size();j++)//if still moving 
+				bullets.get(j).updatePosition();
+			}
+
 			for (int i=0; i<asteroids.size();i++){
 				asteroids.get(i).updatePosition();
 			}
@@ -87,6 +97,27 @@ public class AsteroidsGame extends GraphicsProgram
 			   return a;
 			}
 		return null;       
+	}
+
+	public void keyPressed(KeyEvent e) {
+
+		if (e.getKeyCode() == KeyEvent.VK_J) {
+			ship.rotate(15.0);
+		} 
+
+		else if (e.getKeyCode() == KeyEvent.VK_L) {
+			ship.rotate(-15.0);
+		} 
+
+		else if (e.getKeyCode() == KeyEvent.VK_I) {
+			ship.increaseVelocity(.5);
+		}
+
+		else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+			Bullet bullet = ship.makeBullet();
+			add(bullet);
+			bullets.add(bullet);
+		}
 	}
 	
 }

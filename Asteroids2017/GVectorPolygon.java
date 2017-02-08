@@ -2,7 +2,8 @@ import acm.graphics.*;
 
 public class GVectorPolygon extends GPolygon
 {
-	private double vx, vy;
+	private double vx=0;
+	private double vy=0;
 	private double theta;
 	private double maxX, maxY; // dimensions of the "window" to enable "wrapping around"
 
@@ -19,16 +20,15 @@ public class GVectorPolygon extends GPolygon
 
 	public void increaseVelocity(double numPixels)
 	{
-	   // to be written in version 0.1
-		vx += Math.cos(Math.PI * theta / 180.0) / 2.0;
-		vy += Math.sin(-Math.PI * theta / 180.0) / 2.0;
-		double mag = Math.sqrt(vx * vx + vy * vy);
-		if (mag > 3.0) {
-			vx *= 3.0 / mag;
-			vy *= 3.0 / mag;
+		double thetaInRadians = theta*Math.PI/180;
+		vx += numPixels*Math.cos(thetaInRadians);
+		vy -= numPixels*Math.sin(thetaInRadians);
+		double v = Math.sqrt(vx*vx + vy*vy);
+		if (v>MAXVELOCITY){
+			vx *= MAXVELOCITY/v;
+			vy *= MAXVELOCITY/v;
 		}
 	}
-
 
 	public void updatePosition() {
 		move(vx, vy);
