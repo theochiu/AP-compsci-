@@ -13,7 +13,7 @@ public class AsteroidsGame extends GraphicsProgram
 	private boolean playing;
 	private GLabel notificationLabel, scoreLabel;
 	// uncomment out the lines below in version 0.4.1 and 0.5.2
-	// private Ship ship;
+	private Ship ship;
 	// private ArrayList<Bullet> bullets;
 	private int level;
 	private int ships;
@@ -45,7 +45,11 @@ public class AsteroidsGame extends GraphicsProgram
 		scoreLabel.setFont("Courier-Plain-10");
 		scoreLabel.setLocation(16, 16);
 		add(scoreLabel);
-		   
+
+		ship = new Ship(getWidth(),getHeight());
+		ship.setLocation((getWidth() / 2),(getHeight() / 2));
+		add(ship);
+		
 		asteroids = new ArrayList<Asteroid>();
 		makeAsteroids();
 		

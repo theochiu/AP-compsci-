@@ -10,7 +10,8 @@ public class Asteroid extends GVectorPolygon
 		super(width,height);
 		rotation = Math.random();
 		addVertex(0,0);
-		addVertex(20,0);
+		addVertex(49,0);
+		addVertex(72,34);
 		addVertex(55,55);
 		addVertex(0,37);
 		recenter();
