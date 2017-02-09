@@ -65,6 +65,13 @@ public class AsteroidsGame extends GraphicsProgram
 		// code for version 0.3.1 goes here
 		for (int i=0; i<3; i++){
 			Asteroid a = new Asteroid(getWidth(), getHeight());
+			
+			a.setLocation(Math.random() * getWidth(), Math.random() * getHeight());
+			// use magnitude nad distance formula 
+			while (Math.pow(ship.getX() - a.getX(), 2) + Math.pow(ship.getX() - a.getX(), 2) < 10000) {
+				a.setLocation(Math.random() * getWidth(), Math.random() * getHeight());
+			}
+
 			a.rotate((int)(Math.random()*360));
 			a.increaseVelocity(1);
 			asteroids.add(a);
@@ -79,12 +86,30 @@ public class AsteroidsGame extends GraphicsProgram
 		{
 			pause(10);
 			ship.updatePosition();
-			for (int j=0; j<bullets.size();j++)//if still moving 
-				bullets.get(j).updatePosition();
+			for (int j=0; j<bullets.size();j++){//if still moving
+
+				if (bullets.get(j).stillMoving()){
+					bullets.get(j).updatePosition();
+				}
+
+				else{
+					remove(bullets.get(j));
+					bullets.remove(j);
+				}
 			}
 
 			for (int i=0; i<asteroids.size();i++){
 				asteroids.get(i).updatePosition();
+			}
+
+			for (int i=0;i<bullets.size();i++){
+				Asteroid x = checkForCollisions(bullets.get(i));
+				if (x!=null){
+					shotAsteroid(x);
+					remove(bullets.get(i));
+					bullets.remove(i);
+					i--;
+				}
 			}
 		} 
 	}
@@ -92,10 +117,10 @@ public class AsteroidsGame extends GraphicsProgram
 	private Asteroid checkForCollisions(GVectorPolygon obj)
 	{
 		for (Asteroid a:asteroids)
-			if (a.getBounds().intersects(obj.getBounds()))
-			{
+			if (a.getBounds().intersects(obj.getBounds())) {
 			   return a;
 			}
+
 		return null;       
 	}
 
@@ -118,6 +143,66 @@ public class AsteroidsGame extends GraphicsProgram
 			add(bullet);
 			bullets.add(bullet);
 		}
+	}
+
+
+	private void shipCollided() {
+		ships--;
+		String message;
+		if (ships == 0)
+			message="Game Over." ;
+		else if (ships == 1)
+			message ="Click mouse to continue. One ship remaining." ;
+		else 
+			message ="Click mouse to continue. Two ships remaining.";
+
+		playing = false;
+		notificationLabel.setLabel(message);
+		notificationLabel.setLocation((getWidth() - notificationLabel.getWidth()) / 2.0, (getHeight() / 2 - 40));
+		add(notificationLabel);
+		remove(ship);
+		ship = new Ship(getWidth(), getHeight());
+		ship.setLocation((getWidth() / 2), (getHeight() / 2));
+		ship.rotate(90.0);
+		add(ship);
+	}
+
+	 private void shotAsteroid(Asteroid a) {
+
+	 	remove(a);
+		asteroids.remove(a);
+
+		score += 10;
+		scoreLabel.setLabel("Score:" + score);
+
+		double randomAngle = Math.random() * 360.0;
+
+
+
+		
+		if (a instanceof SmallAsteroid){}
+		if (a instanceof MediumAsteroid) {
+			for (int i = 0; i < 3; ++i) {
+				SmallAsteroid b = new SmallAsteroid(getWidth(), getHeight());
+				b.setLocation(a.getX(), a.getY());
+				b.rotate((randomAngle + (double)(i * 120)) % 360.0);
+				b.increaseVelocity(1);
+				asteroids.add(b);
+				add(b);
+			}
+			
+		} else {
+			for (int i = 0; i < 3; ++i) {
+				MediumAsteroid b = new MediumAsteroid(getWidth(), getHeight());
+				b.setLocation(a.getX(), a.getY());
+				b.rotate((randomAngle + (double)(i * 120)) % 360.0);
+				b.increaseVelocity(1);
+				asteroids.add(b);
+				add(b);
+			}
+		}
+
+		
 	}
 	
 }
