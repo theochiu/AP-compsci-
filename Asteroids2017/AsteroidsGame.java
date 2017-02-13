@@ -29,7 +29,7 @@ public class AsteroidsGame extends GraphicsProgram
 		smallBangClip = MediaTools.loadAudioClip("bangSmall.wav");   
 
 		level = 0;
-		ships = 3;
+		ships = 999999999;
 		score = 0;
 		
 		setBackground(Color.BLACK);
@@ -51,6 +51,7 @@ public class AsteroidsGame extends GraphicsProgram
 		add(ship);
 
 		addKeyListeners();
+		addMouseListeners();
 		
 		asteroids = new ArrayList<Asteroid>();
 		makeAsteroids();
@@ -63,7 +64,7 @@ public class AsteroidsGame extends GraphicsProgram
 	private void makeAsteroids()
 	{
 		// code for version 0.3.1 goes here
-		for (int i=0; i<3; i++){
+		for (int i=0; i<3+level; i++){
 			Asteroid a = new Asteroid(getWidth(), getHeight());
 			
 			a.setLocation(Math.random() * getWidth(), Math.random() * getHeight());
@@ -85,7 +86,14 @@ public class AsteroidsGame extends GraphicsProgram
 		while (true)
 		{
 			pause(10);
-			ship.updatePosition();
+			if (playing){
+				ship.updatePosition();
+				if (checkForCollisions(ship)!=null){
+					shipCollided();
+				}
+			}
+
+
 			for (int j=0; j<bullets.size();j++){//if still moving
 
 				if (bullets.get(j).stillMoving()){
@@ -111,6 +119,11 @@ public class AsteroidsGame extends GraphicsProgram
 					i--;
 				}
 			}
+
+			if (asteroids.size() == 0){
+				level++;
+				makeAsteroids();
+			}
 		} 
 	}
 		
@@ -125,6 +138,8 @@ public class AsteroidsGame extends GraphicsProgram
 	}
 
 	public void keyPressed(KeyEvent e) {
+
+		if (!playing){return;}
 
 		if (e.getKeyCode() == KeyEvent.VK_J) {
 			ship.rotate(15.0);
@@ -169,7 +184,7 @@ public class AsteroidsGame extends GraphicsProgram
 
 	 private void shotAsteroid(Asteroid a) {
 
-	 	remove(a);
+		remove(a);
 		asteroids.remove(a);
 
 		score += 10;
@@ -181,7 +196,7 @@ public class AsteroidsGame extends GraphicsProgram
 
 		
 		if (a instanceof SmallAsteroid){}
-		if (a instanceof MediumAsteroid) {
+		else if (a instanceof MediumAsteroid) {
 			for (int i = 0; i < 3; ++i) {
 				SmallAsteroid b = new SmallAsteroid(getWidth(), getHeight());
 				b.setLocation(a.getX(), a.getY());
@@ -201,8 +216,18 @@ public class AsteroidsGame extends GraphicsProgram
 				add(b);
 			}
 		}
+	}
 
-		
+	public void mouseClicked(MouseEvent e) {
+		if (playing) {
+			return;
+		}
+
+		if (ships == 0) {
+			return;
+		}
+		remove(notificationLabel);
+		playing = true;
 	}
 	
 }

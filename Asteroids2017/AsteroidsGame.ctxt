@@ -13,4 +13,6 @@ comment5.params=
 comment5.target=void\ shipCollided()
 comment6.params=a
 comment6.target=void\ shotAsteroid(Asteroid)
-numComments=7
+comment7.params=e
+comment7.target=void\ mouseClicked(java.awt.event.MouseEvent)
+numComments=8
