@@ -15,6 +15,7 @@ public class Runner
 		for (int i=0; i<4; i++){
 			world.add(new Rock());
 		}
+		world.add(new Crab());
 		world.add(new Chameleon());
 		world.show();
 

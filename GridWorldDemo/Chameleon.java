@@ -12,8 +12,15 @@ public class Chameleon extends Critter
 		if (actors.size()==0)
 			return;
 		int index = (int) Math.random()*actors.size();
-		actor a = actors.get(index);
+		Actor a = actors.get(index);
 		setColor(a.getColor());
+	}
+
+	public void makeMove(Location loc){
+		Location current = getLocation();
+		int dir= current.getDirectionToward(loc);
+		setDirection(dir);
+		super.makeMove(loc);
 	}
 
 }
