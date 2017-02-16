@@ -37,6 +37,20 @@ public class Crab extends Critter{
 		}
 	}
 
+	public ArrayList<Actor> getActors(){
+		ArrayList<Acto> result = new ArrayList<Actor>();
+		Grid<Actor> gr = getGrid();
+		Location current = getLocation();
+		int currentDir = getDirection();
+		int[] possibleDirs = {Location.FRONT, Location.HALF_LEFT, Location.HALF_RIGHT};
+		for (int dir: possibleDirs){
+			Location possibleLoc = currentLoc.getAdjacentLocation(current);
+			if(gr.isValid(possibleLoc) && gr.get(possibleLoc)!=null){
+				resuult.add(gr.get(possibleLoc));
+			}
+		}
+		return result;
+	}
 
 
 
