@@ -15,6 +15,15 @@ public class Fish extends Critter
     {
        age=0;
     }
+
+    public void act(){
+        age++;
+        if(age>OLDAGE){
+            if(Math.random()<PROBOFDYING)
+                removeSelfFromGrid();
+        }
+        super.act();
+    }
     
     // finish this up
     
