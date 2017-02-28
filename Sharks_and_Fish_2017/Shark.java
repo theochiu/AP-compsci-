@@ -47,12 +47,34 @@ public class Shark extends Critter
 		}
 	}
 
-	public void act(){
-
+	public ArrayList<Actor> getActors(){
+		ArrayList<Actor> actors = super.getActors();
+		ArrayList<Actor> fish = new ArrayList<Actor>();
+		for (Actor a : actors)
+			if (a instanceof Fish)
+				fish.add(a);
+		return fish;
 	}
 
-	public void processActors(){
-		
+	public void act(){
+		if(turnsSinceEaten==MUSTEAT)
+			removeSelfFromGrid();
+		else if(getActors().size()>0){
+			processActors(getActors());
+			turnsSinceEaten=0;
+		}else{
+			ArrayList<Location> moveLocs = getMoveLocations();
+			Location loc = selectMoveLocation(moveLocs);
+			makeMove(loc);
+			turnsSinceEaten++;
+		}
+	}
+
+	public void processActors(ArrayList<Actor> actors){
+		int whichOne = (int)(Math.random()*actors.size());
+		actors.get(whichOne).removeSelfFromGrid();
+		actors.remove(whichOne);
+		turnsSinceEaten=0;
 	}
 
 	
