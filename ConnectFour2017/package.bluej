@@ -4,18 +4,8 @@ dependency1.to=ConnectFourGame
 dependency1.type=UsesDependency
 package.editor.height=217
 package.editor.width=415
-<<<<<<< HEAD
-package.editor.x=73
-package.editor.y=132
-=======
-<<<<<<< HEAD
-package.editor.x=186
-package.editor.y=67
-=======
 package.editor.x=264
 package.editor.y=122
->>>>>>> master
->>>>>>> master
 package.numDependencies=1
 package.numTargets=2
 package.showExtends=true
