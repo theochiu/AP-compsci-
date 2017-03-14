@@ -43,7 +43,7 @@ public class Fraction
 	}
 
 	public Fraction divide(Fraction a){
-		return new Fraction(numerator*a.denominator , denominator*a.numerator);
+		return multiply(a.reciprocal());
 	}
 
 	public Fraction cubed(){
