@@ -1,8 +1,8 @@
 #BlueJ package file
 package.editor.height=236
 package.editor.width=319
-package.editor.x=344
-package.editor.y=208
+package.editor.x=1200
+package.editor.y=102
 package.numDependencies=0
 package.numTargets=2
 package.showExtends=true
@@ -23,8 +23,8 @@ target2.appletHeight=500
 target2.appletWidth=500
 target2.editor.height=724
 target2.editor.width=1218
-target2.editor.x=14
-target2.editor.y=22
+target2.editor.x=1281
+target2.editor.y=134
 target2.height=50
 target2.name=Yahtzee
 target2.naviview.expanded=false
