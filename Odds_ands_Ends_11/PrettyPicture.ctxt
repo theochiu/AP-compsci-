@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=
+comment0.target=void\ run()
+comment1.params=num
+comment1.target=java.lang.String\ getVerys(int)
+comment2.params=startX\ startY\ angle\ length
+comment2.target=void\ tree(double,\ double,\ double,\ double)
+numComments=3
