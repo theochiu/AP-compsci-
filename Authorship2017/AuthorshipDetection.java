@@ -13,6 +13,25 @@ public class AuthorshipDetection extends ConsoleProgram
         loadAuthorSignatures();
         String filename = readLine("Enter file name: ");
         String fileContents = FileHelper.getFileContents(filename);
+
+        //test
+
+    /*
+        ArrayList<String> sentences = getSentencesFromContents(fileContents);
+        // println("Number of sentences = "+ sentences.size());
+        for(int i=0;i<20;i++){
+            // println(sentences.get(i)+"\n");
+            println(getWordsFromSentence(sentences.get(1)).get(i));
+        }
+    */
+
+        ArrayList<String> sentences = getSentencesFromContents(fileContents);
+        ArrayList<String> allwords = getAllWordsFromSentences(sentences);
+        for(int i=0;i<20;i++){
+            println(allwords.get(i));
+        
+
+    
     }
 
     // you'll do tasks #2 through #12 here
@@ -27,6 +46,34 @@ public class AuthorshipDetection extends ConsoleProgram
         return sentences;
     }
     
+    private ArrayList<String> getWordsFromSentence(String sentence) {
+        ArrayList<String> words = new ArrayList<String>();
+
+        while(sentence.indexOf(" ")!=-1){
+            words.add(sentence.substring(0,sentence.indexOf(" ")+1));
+            sentence = sentence.substring(sentence.indexOf(" ")+1);
+        }
+        return words;
+    }
+
+    private ArrayList<String> getAllWordsFromSentences(ArrayList<String> sentences){
+        ArrayList<String> allwords = new ArrayList<String>();
+        ArrayList<String> result = new ArrayList<String>();
+        for(String sentence : sentences){
+            result = getWordsFromSentence(sentence);
+            for(String word : result){
+                allwords.add(word);
+            }
+        }
+        return allwords;
+    }
+
+    private String clean(String word) {
+        word = word.toLowerCase();
+        
+        return word;
+    }
+
     // I wrote this method for you
     private void loadAuthorSignatures()
     {
