@@ -25,11 +25,15 @@ public class AuthorshipDetection extends ConsoleProgram
         }
     */
 
+        /*
+
         ArrayList<String> sentences = getSentencesFromContents(fileContents);
         ArrayList<String> allwords = getAllWordsFromSentences(sentences);
         for(int i=0;i<20;i++){
             println(allwords.get(i));
-        
+
+        */
+        println(clean(",don't."));
 
     
     }
@@ -71,6 +75,18 @@ public class AuthorshipDetection extends ConsoleProgram
     private String clean(String word) {
         word = word.toLowerCase();
         
+        while (PUNCTUATION.indexOf(word.substring(0, 1)) != -1) {
+            if(word.length()==0)
+                return
+            word=word.substring(1);
+        }
+
+        while(PUNCTUATION.indexOf(word.substring(word.length()-1, word.length()))!=-1){
+            if(word.length()==0)
+                return
+            word=word.substring(word.length()-1, word.length());
+        }
+    
         return word;
     }
 
