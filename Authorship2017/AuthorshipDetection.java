@@ -10,15 +10,23 @@ public class AuthorshipDetection extends ConsoleProgram
 
     public void run()
     {
+
+    
         loadAuthorSignatures();
         String filename = readLine("Enter file name: ");
         String fileContents = FileHelper.getFileContents(filename);
 
+    
+
         //test
 
-    /*
+    
         ArrayList<String> sentences = getSentencesFromContents(fileContents);
+        ArrayList<String> words = getAllWordsFromSentences(sentences);
+
+        println(computeAverageWordLength(words));
         // println("Number of sentences = "+ sentences.size());
+    /*
         for(int i=0;i<20;i++){
             // println(sentences.get(i)+"\n");
             println(getWordsFromSentence(sentences.get(1)).get(i));
@@ -33,8 +41,11 @@ public class AuthorshipDetection extends ConsoleProgram
             println(allwords.get(i));
 
         */
-        println(clean(",don't."));
 
+            /*
+        println(clean(",don't."));
+        System.out.println(clean(",don't."));
+            */
     
     }
 
@@ -54,7 +65,8 @@ public class AuthorshipDetection extends ConsoleProgram
         ArrayList<String> words = new ArrayList<String>();
 
         while(sentence.indexOf(" ")!=-1){
-            words.add(sentence.substring(0,sentence.indexOf(" ")+1));
+
+            words.add(clean(sentence.substring(0,sentence.indexOf(" ")+1)));
             sentence = sentence.substring(sentence.indexOf(" ")+1);
         }
         return words;
@@ -77,17 +89,25 @@ public class AuthorshipDetection extends ConsoleProgram
         
         while (PUNCTUATION.indexOf(word.substring(0, 1)) != -1) {
             if(word.length()==0)
-                return
+                return word;
             word=word.substring(1);
         }
 
         while(PUNCTUATION.indexOf(word.substring(word.length()-1, word.length()))!=-1){
             if(word.length()==0)
-                return
-            word=word.substring(word.length()-1, word.length());
+                return word;
+            word=word.substring(0, word.length()-1);
         }
     
         return word;
+    }
+
+    private double computeAverageWordLength(ArrayList<String> words) {
+        int total = 0;
+        for (String word : words) {
+            total += word.length();
+        }
+        return (total)/(words.size());
     }
 
     // I wrote this method for you
