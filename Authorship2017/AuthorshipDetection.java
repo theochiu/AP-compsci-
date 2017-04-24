@@ -24,8 +24,18 @@ public class AuthorshipDetection extends ConsoleProgram
         ArrayList<String> sentences = getSentencesFromContents(fileContents);
         ArrayList<String> words = getAllWordsFromSentences(sentences);
 
+        println(computeSentenceComplexity(sentences));
+
+        // println(computeHapaxLegomannaRatio(words));
+
+        // println(computeDifferentWordRatio(words));
+
+/*
+        println(words.size());
         println(computeAverageWordLength(words));
         // println("Number of sentences = "+ sentences.size());
+*/
+
     /*
         for(int i=0;i<20;i++){
             // println(sentences.get(i)+"\n");
@@ -87,16 +97,20 @@ public class AuthorshipDetection extends ConsoleProgram
     private String clean(String word) {
         word = word.toLowerCase();
         
+        if(word.length()==0)
+                return word;
         while (PUNCTUATION.indexOf(word.substring(0, 1)) != -1) {
+            word=word.substring(1);
+
             if(word.length()==0)
                 return word;
-            word=word.substring(1);
         }
 
         while(PUNCTUATION.indexOf(word.substring(word.length()-1, word.length()))!=-1){
+            word=word.substring(0, word.length()-1);
+
             if(word.length()==0)
                 return word;
-            word=word.substring(0, word.length()-1);
         }
     
         return word;
@@ -108,6 +122,51 @@ public class AuthorshipDetection extends ConsoleProgram
             total += word.length();
         }
         return (total)/(words.size());
+    }
+
+    private double computeDifferentWordRatio(ArrayList<String> words){
+        ArrayList<String> uniquewords = new ArrayList<String>();
+        for(String word : words){
+            if(!uniquewords.contains(word)){
+                uniquewords.add(word);
+            }
+        }
+        return uniquewords.size()/(words.size()*1.0);
+    }
+
+    private double computeHapaxLegomannaRatio(ArrayList<String> words) {
+        ArrayList<String> appearOnce = new ArrayList<String>();
+        ArrayList<String> appearTwice = new ArrayList<String>();
+        for(String word : words) {
+            if (!appearOnce.contains(word)) {
+                appearOnce.add(word);
+            } else if (appearOnce.contains(word) && !(appearTwice.contains(word))) {
+                appearTwice.add(word);
+            }
+        }
+        return (appearOnce.size() - appearTwice.size())/(1.0*words.size());
+    }
+
+    private double computeSentenceComplexity(ArrayList<String> sentences) {
+        double numPhrases = 0;
+        String punc = ":;,";
+        for (String sentence : sentences) {
+            int ctr = 1;
+            for (int i=0; i<sentence.length()-1; i++) {
+                if (punc.indexOf(sentence.substring(i, i+1)) != -1) {
+                    ctr++;
+                }
+            }
+            numPhrases += ctr;
+        }
+        return numPhrases/(1.*sentences.size());
+    }
+
+    private double computeScore(AuthorSignature first, AuthorSignature second){
+        double score = 0;
+
+        score += Math.abs(first.computeAverageWordLength() - second.computeAverageWordLength()) * WEIGHT[0];
+        score += Math.abs(first.comp)
     }
 
     // I wrote this method for you
