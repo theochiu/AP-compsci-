@@ -7,6 +7,8 @@ public class AuthorshipDetection extends ConsoleProgram
     private static final String PUNCTUATION = "'!\",;:.-?)([]<>*#\n\t\r ";
     private static final double[] WEIGHT = {11.0, 33.0, 50.0, 0.4, 4.0};
     private AuthorSignature[] authors;
+    private ArrayList<String> sentences;
+    private ArrayList<String> words;
 
     public void run()
     {
@@ -15,16 +17,36 @@ public class AuthorshipDetection extends ConsoleProgram
         loadAuthorSignatures();
         String filename = readLine("Enter file name: ");
         String fileContents = FileHelper.getFileContents(filename);
+        sentences = getSentencesFromContents(fileContents);
+        words = getAllWordsFromSentences(sentences);
+
+
+        AuthorSignature unknown = new AuthorSignature("unknown" , computeAverageWordLength(words), computeDifferentWordRatio(words), 
+            computeHapaxLegomannaRatio(words), computeAverageWordsPerSentence(sentences), computeSentenceComplexity(sentences));
+
+        println("number of sentences = "+sentences.size());
+        println("number of words = " +words.size());
+        println("\t"+unknown.getAverageWordLength());
+        println("\t"+unknown.getDifferentWordRatio());
+        println("\t"+unknown.getHapaxRatio());
+        println("\t"+unknown.getAverageWordsPerSentence());
+        println("\t"+unknown.getAveragePhrasesPerSentence());
+        for(AuthorSignature author : authors){
+            println(author.getAuthorName()+": "+computeScore(author, unknown));
+        }
 
     
 
         //test
 
-    
-        ArrayList<String> sentences = getSentencesFromContents(fileContents);
-        ArrayList<String> words = getAllWordsFromSentences(sentences);
+        
+        
 
-        println(computeSentenceComplexity(sentences));
+    //    println(computeScore(authors[1], authors[2]));
+
+        // println(computeAverageWordsPerSentence(sentences));
+
+        // println(computeSentenceComplexity(sentences));
 
         // println(computeHapaxLegomannaRatio(words));
 
@@ -63,11 +85,39 @@ public class AuthorshipDetection extends ConsoleProgram
 
     private ArrayList<String> getSentencesFromContents(String fileContents){
         ArrayList<String> sentences = new ArrayList<String>();
-
+        /*
         while(fileContents.indexOf(".")!=-1){
             sentences.add(fileContents.substring(0,fileContents.indexOf(".")+1));
             fileContents = fileContents.substring(fileContents.indexOf(".")+1);
         }
+        */
+
+        while (fileContents.length()>0)
+         {
+
+            int period = fileContents.indexOf(".");
+            if (period == -1) period = fileContents.length();
+                        int qm = fileContents.indexOf("?");
+            if (qm == -1) qm = fileContents.length();
+                        int ex = fileContents.indexOf("!");
+            if (ex == -1) ex = fileContents.length();
+            int champ = period;
+            if (qm < champ) champ = qm;
+            if (ex < champ) champ = ex;
+            if (champ == fileContents.length())
+            {
+
+                sentences.add(fileContents);
+                return sentences;
+            }
+            String sentence = clean(fileContents.substring(0, champ));
+            if (sentence.length()>0)
+                sentences.add(sentence);
+            fileContents = fileContents.substring(champ+1);
+
+
+         }   
+
         return sentences;
     }
     
@@ -116,6 +166,7 @@ public class AuthorshipDetection extends ConsoleProgram
         return word;
     }
 
+
     private double computeAverageWordLength(ArrayList<String> words) {
         int total = 0;
         for (String word : words) {
@@ -162,11 +213,22 @@ public class AuthorshipDetection extends ConsoleProgram
         return numPhrases/(1.*sentences.size());
     }
 
+    private double computeAverageWordsPerSentence(ArrayList<String> sentences){
+        return getAllWordsFromSentences(sentences).size()*1./sentences.size();
+    }
+
+    
+
     private double computeScore(AuthorSignature first, AuthorSignature second){
         double score = 0;
 
-        score += Math.abs(first.computeAverageWordLength() - second.computeAverageWordLength()) * WEIGHT[0];
-        score += Math.abs(first.comp)
+        score += Math.abs(first.getAverageWordLength() - second.getAverageWordLength()) * WEIGHT[0];
+        score += Math.abs(first.getDifferentWordRatio() - second.getDifferentWordRatio()* WEIGHT[1]);
+        score += Math.abs(first.getHapaxRatio() - second.getHapaxRatio()* WEIGHT[2]);
+        score += Math.abs(first.getAverageWordsPerSentence() - second.getAverageWordsPerSentence()* WEIGHT[3]);
+        score += Math.abs(first.getAveragePhrasesPerSentence() - second.getAveragePhrasesPerSentence()* WEIGHT[4]);
+
+        return score;
     }
 
     // I wrote this method for you

@@ -1,4 +1,4 @@
-
+import java.util.*;
 public class AuthorSignature
 {
     private String aName;
@@ -18,6 +18,32 @@ public class AuthorSignature
         wordsPerSent = avgWordsPerSentence;
         phrasesPerSentence = avgPhrasesPerSentence;
     }
-    
-    // you'll need five more methods here
+
+    public String getAuthorName(){
+        return aName;
+    }
+
+    public double getAverageWordLength(){
+        return wordLength;
+    }
+
+    public double getDifferentWordRatio(){
+        return wordRatio;
+    }
+
+    public double getHapaxRatio(){
+        return hapax;
+    }
+
+    public double getAverageWordsPerSentence(){
+        return wordsPerSent;
+    }
+
+    public double getAveragePhrasesPerSentence(){
+        return phrasesPerSentence;
+    }
 }
+
+
+
+
