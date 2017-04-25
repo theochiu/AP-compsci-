@@ -17,6 +17,7 @@ public class AuthorshipDetection extends ConsoleProgram
         loadAuthorSignatures();
         String filename = readLine("Enter file name: ");
         String fileContents = FileHelper.getFileContents(filename);
+        fileContents = fileContents.replaceAll("\n", " ");
         sentences = getSentencesFromContents(fileContents);
         words = getAllWordsFromSentences(sentences);
 
@@ -125,16 +126,21 @@ public class AuthorshipDetection extends ConsoleProgram
         ArrayList<String> words = new ArrayList<String>();
 
         while(sentence.indexOf(" ")!=-1){
-
-            words.add(clean(sentence.substring(0,sentence.indexOf(" ")+1)));
+            String word = clean(sentence.substring(0,sentence.indexOf(" ")+1));
+            if (word.length()>0)
+                 words.add(word);
             sentence = sentence.substring(sentence.indexOf(" ")+1);
         }
+        String word = clean(sentence);
+        if (word.length()>0)
+            words.add(word);
         return words;
     }
 
     private ArrayList<String> getAllWordsFromSentences(ArrayList<String> sentences){
         ArrayList<String> allwords = new ArrayList<String>();
         ArrayList<String> result = new ArrayList<String>();
+
         for(String sentence : sentences){
             result = getWordsFromSentence(sentence);
             for(String word : result){
@@ -172,7 +178,7 @@ public class AuthorshipDetection extends ConsoleProgram
         for (String word : words) {
             total += word.length();
         }
-        return (total)/(words.size());
+        return (1.*total)/(words.size());
     }
 
     private double computeDifferentWordRatio(ArrayList<String> words){
@@ -223,10 +229,10 @@ public class AuthorshipDetection extends ConsoleProgram
         double score = 0;
 
         score += Math.abs(first.getAverageWordLength() - second.getAverageWordLength()) * WEIGHT[0];
-        score += Math.abs(first.getDifferentWordRatio() - second.getDifferentWordRatio()* WEIGHT[1]);
-        score += Math.abs(first.getHapaxRatio() - second.getHapaxRatio()* WEIGHT[2]);
-        score += Math.abs(first.getAverageWordsPerSentence() - second.getAverageWordsPerSentence()* WEIGHT[3]);
-        score += Math.abs(first.getAveragePhrasesPerSentence() - second.getAveragePhrasesPerSentence()* WEIGHT[4]);
+        score += Math.abs(first.getDifferentWordRatio() - second.getDifferentWordRatio())* WEIGHT[1];
+        score += Math.abs(first.getHapaxRatio() - second.getHapaxRatio())* WEIGHT[2];
+        score += Math.abs(first.getAverageWordsPerSentence() - second.getAverageWordsPerSentence())* WEIGHT[3];
+        score += Math.abs(first.getAveragePhrasesPerSentence() - second.getAveragePhrasesPerSentence())* WEIGHT[4];
 
         return score;
     }
@@ -248,6 +254,11 @@ public class AuthorshipDetection extends ConsoleProgram
         authors[10] = new AuthorSignature("Mark Twain", 4.33272222298, 0.117254215021, 0.0633074228159, 14.3548573631, 2.43716268311);
         authors[11] = new AuthorSignature("Sir Arthur Conan Doyle", 4.16808311494, 0.0822989796874, 0.0394458485444, 14.717564466, 2.2220872148);
         authors[12] = new AuthorSignature("William Shakespeare", 4.16216957834, 0.105602561171, 0.0575348730848, 9.34707371975, 2.24620146314);
+    }
+
+    private String findWinner(AuthorSignature unknown){
+        min = computeScore(unknown, AuthorSignature[0]);
+        for()
     }
 
 }
