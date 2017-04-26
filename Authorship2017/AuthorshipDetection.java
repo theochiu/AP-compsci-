@@ -35,6 +35,7 @@ public class AuthorshipDetection extends ConsoleProgram
         for(AuthorSignature author : authors){
             println(author.getAuthorName()+": "+computeScore(author, unknown));
         }
+        findWinner(unknown);
 
     
 
@@ -256,9 +257,16 @@ public class AuthorshipDetection extends ConsoleProgram
         authors[12] = new AuthorSignature("William Shakespeare", 4.16216957834, 0.105602561171, 0.0575348730848, 9.34707371975, 2.24620146314);
     }
 
-    private String findWinner(AuthorSignature unknown){
-        min = computeScore(unknown, AuthorSignature[0]);
-        for()
+    private void findWinner(AuthorSignature unknown){
+        double min = computeScore(unknown, authors[0]);
+        int ind = 0;
+        for(int i = 1; i<12; i++){
+            if(computeScore(unknown, authors[i])<min){
+                min = computeScore(unknown,authors[i]);
+                ind = i;
+            }
+        }
+        println("The predicted author is: "+authors[ind].getAuthorName());
     }
 
 }
