@@ -32,7 +32,7 @@ public class MountainPathFinder extends GraphicsProgram
 		// you'll do this in task #0
 		JLabel filelabel = new JLabel("File name: ");
 		add(filelabel,NORTH);
-		fileNameField = new JTextField("Coloardo_480x480.txt");
+		fileNameField = new JTextField("Colorado_480x480.txt");
 		add(fileNameField, NORTH);
 		JLabel sizeLabel = new JLabel("Map size:");
 		add(sizeLabel, NORTH);
@@ -57,6 +57,19 @@ public class MountainPathFinder extends GraphicsProgram
 		if (event.getSource() == loadButton)
 			handleLoadButton();
 		// more to do here eventually
+		if (event.getSource() == drawButton)
+			handleDrawButton();
+		if (event.getSource() == findPathButton)
+			handlePathButton();
+	}
+
+	private void handleDrawButton(){
+		mountainMap.drawMap(this);
+		findPathButton.setEnabled(true);
+	}
+
+	private void handlePathButton(){
+		mountainMap.drawLowestElevPath(this,300,Color.RED);
 	}
 
 	private void handleLoadButton()
@@ -68,10 +81,14 @@ public class MountainPathFinder extends GraphicsProgram
 							Integer.parseInt(colsField.getText()));
 		if(mountainMap.isValid()){
 			JOptionPane.showMessageDialog(null,"The map data loaded succesfully");
+			drawButton.setEnabled(true);
+
 		}else{
 			JOptionPane.showMessageDialog(null,"Something went wrong loading the map data");
 		}
 	}
+
+
 
 
 }
