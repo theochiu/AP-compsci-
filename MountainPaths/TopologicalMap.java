@@ -8,10 +8,16 @@ public class TopologicalMap
 	// private instance variables
 	private double[][] mapData;
 	private boolean valid;
+	private double totalDistance;
+
+	public double getTotalDistance(){
+		return totalDistance;
+	}
 
 	public TopologicalMap(String filename, int rows, int cols)
 	{
 		// you'll do this in task #1
+		totalDistance = 0;
 		mapData = new double[rows][cols];
 		double[] imported = FileHelper.readDataFromFile(filename, rows*cols);
 		if(imported.length>0){
@@ -68,7 +74,6 @@ public class TopologicalMap
 
 		double min = this.findMinimum();
 		double max = this.findMaximum();
-		System.out.println(min+" "+max);
 
 		for(int r=0; r<mapData.length;r++){
 			for(int c=0; c<mapData[r].length;c++){
@@ -100,19 +105,42 @@ public class TopologicalMap
 
 			// choose where to move on to
 			double up, down, straight;
-			up = Math.abs(mapData[row][c] -  mapData[row-1][c+1]);
-			down = Math.abs(mapData[row][c] - mapData[row+1][c+1]);
+			if(row-1>=0){
+				up = Math.abs(mapData[row][c] -  mapData[row-1][c+1]);
+			}else{
+				up=Integer.MAX_VALUE;
+			}
+
+			if(row+1<mapData.length){
+				down = Math.abs(mapData[row][c] - mapData[row+1][c+1]);
+			}else{
+				down = Integer.MAX_VALUE;
+			}
+
 			straight = Math.abs(mapData[row][c] - mapData[row][c+1]);
 
-			if(down<straight&&down<up&&row-1>=0){
+			if(down<straight&&down<up&&row+1<mapData.length){
 				row++;
 				totalchange+=down;
+				totalDistance+=Math.pow(2,.5);
+			}
+			else if(up<down&&up<straight&&row-1>=0){
+				row--;
+				totalchange+=up;
+				totalDistance+=Math.pow(2,.5);
+			}
+			else if(down<straight&&down<up&&row+1<mapData.length){
+				row++;
+				totalchange+=down;
+				totalDistance+=Math.pow(2,.5);
 			}
 			else if(straight<down&&straight<up){
 				totalchange+=straight;
+				totalDistance++;
 			}
 			else if(straight==down||straight==up){
 				totalchange+=straight;
+				totalDistance++;
 			}
 			else if(up==down){
 				double rand = Math.random();
@@ -120,13 +148,13 @@ public class TopologicalMap
 					if(row+1<mapData.length){
 						row--;
 						totalchange+=up;
+						totalDistance+=Math.pow(2,.5);
 					}
-
-
 				}else{
 					if(row-1>=0){
 						totalchange+=down;
 						row++;
+						totalDistance+=Math.pow(2,.5);
 					}
 				}
 			}
@@ -137,7 +165,19 @@ public class TopologicalMap
 	public int getIndexOfLowestElevPath(GraphicsProgram graphics)
 	{
 		// you'll do this in task #6 
-		return 0; // just to get it to compile
+		//return 0; // just to get it to compile
+
+		double champ=drawLowestElevPath(graphics, 0, Color.RED);
+		int ind=0;
+		for(int i=1;i<mapData.length;i++){
+			double x = drawLowestElevPath(graphics,i,Color.RED);
+			if(x<champ){
+				champ=x;
+				ind=i;
+			}
+		}
+		drawLowestElevPath(graphics,ind,Color.GREEN);
+		return ind; 
 	}
 	
 }

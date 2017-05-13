@@ -13,7 +13,10 @@ public class MountainPathFinder extends GraphicsProgram
 	private JButton drawButton;
 	private JButton findPathButton;
 	private JTextField fileNameField;
-	private JTextField rowsField, colsField;
+	private JTextField rowsField, colsField, distanceField, elevationChangeField;
+
+	private String distancetext = "           ";
+	private String elevationtext = "           ";
 
 	public void init()
 	{
@@ -25,6 +28,10 @@ public class MountainPathFinder extends GraphicsProgram
 	public void run()
 	{
 		addActionListeners();
+		while (true){
+			elevationChangeField.setText(elevationtext);
+			distanceField .setText(distancetext);
+		}
 	}
 
 	private void initGUI()
@@ -50,6 +57,20 @@ public class MountainPathFinder extends GraphicsProgram
 		findPathButton = new JButton("Find Path");
 		findPathButton.setEnabled(false);
 		add(findPathButton, NORTH);
+
+		//extension
+		JLabel distancelabel = new JLabel("Total distance covered:");
+		add(distancelabel,SOUTH);
+
+		distanceField = new JTextField("           ");
+		add(distanceField,SOUTH);
+
+		JLabel elevationlabel = new JLabel("Total change in elevation:");
+		add(elevationlabel,SOUTH);
+
+		elevationChangeField = new JTextField("           ");
+		add(elevationChangeField,SOUTH);
+
 	}
 
 	public void actionPerformed(ActionEvent event)
@@ -69,7 +90,22 @@ public class MountainPathFinder extends GraphicsProgram
 	}
 
 	private void handlePathButton(){
-		mountainMap.drawLowestElevPath(this,300,Color.RED);
+
+		//testing
+		//mountainMap.drawLowestElevPath(this,300,Color.RED);
+//		mountainMap.getIndexOfLowestElevPath(this);
+		// extention p2
+		double y= mountainMap.getIndexOfLowestElevPath(this);
+		double x = mountainMap.getTotalDistance();
+
+		distancetext = x+"";
+		elevationtext = y+"";
+
+		System.out.println(x+"\n"+y);
+
+	//	distanceField.setText(x+"");
+	//	elevationChangeField.setText(y+"");
+
 	}
 
 	private void handleLoadButton()
